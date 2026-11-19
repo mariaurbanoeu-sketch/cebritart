@@ -1147,6 +1147,7 @@ html.sacseja-fort .nav{animation:sacseja .4s linear}
       <button class="chip" data-f="serie" aria-pressed="false" data-i18n="f.serie">Sèrie a tinta</button>
       <button class="chip" data-f="ffmm" aria-pressed="false" data-i18n="f.ffmm">Falleres majors</button>
       <button class="chip" data-f="dana" aria-pressed="false" data-i18n="f.dana">DANA</button>
+      <button class="chip" data-f="vector" aria-pressed="false" data-i18n="f.vector">Vectorial</button>
     </div>
     <p class="indult-note" id="indNote" data-i18n="ind.note">Com a les Falles, només un ninot pot ser indultat. Tria el teu.</p>
     <div class="ninots" id="ninotsGrid"></div>
@@ -1535,14 +1536,23 @@ const ninots = [
  {f:"serie",src:"serie-12-crema.webp",w:813,h:1154,t:{val:"La Cremà",cas:"La Cremà"},s:"ink"},
  {f:"dana",src:"dana-tots-a-una-veu.webp",w:864,h:1080,t:{val:"Valencians, tots a una veu",cas:"Valencians, tots a una veu"},s:"dana"},
  {f:"dana",src:"dana-el-poble.webp",w:1273,h:1800,t:{val:"Només el poble salva el poble",cas:"Solo el pueblo salva al pueblo"},s:"dana"},
- {f:"dana",src:"dana-valencians.webp",w:1800,h:1800,t:{val:"Valencians, en peu alcem-se",cas:"Valencians, en peu alcem-se"},s:"dana"}
+ {f:"dana",src:"dana-valencians.webp",w:1800,h:1800,t:{val:"Valencians, en peu alcem-se",cas:"Valencians, en peu alcem-se"},s:"dana"},
+ {f:"vector",src:"../vector/mare-deu-micalet.webp",w:990,h:1400,t:{val:"La Mare de Déu i el Micalet",cas:"La Mare de Déu y el Micalet"},s:"vec"},
+ {f:"vector",src:"../vector/valencia-monuments.webp",w:990,h:1400,t:{val:"València",cas:"Valencia"},s:"vec"},
+ {f:"vector",src:"../vector/barraca-albufera.webp",w:990,h:1400,t:{val:"La barraca",cas:"La barraca"},s:"vec"},
+ {f:"vector",src:"../vector/passeig-platja.webp",w:990,h:1400,t:{val:"Passeig vora la mar",cas:"Paseo junto al mar"},s:"vec"},
+ {f:"vector",src:"../vector/mare-deu-raigs.webp",w:990,h:1400,t:{val:"La Geperudeta",cas:"La Geperudeta"},s:"vec"},
+ {f:"vector",src:"../vector/fallera-dana.webp",w:990,h:1400,t:{val:"Després de la DANA",cas:"Después de la DANA"},s:"vec"},
+ {f:"vector",src:"../vector/albufera-cavall.webp",w:1400,h:990,t:{val:"L'Albufera",cas:"La Albufera"},s:"vec"},
+ {f:"vector",src:"../vector/mare-deu-sant-vicent.webp",w:1400,h:990,t:{val:"La Mare de Déu i Sant Vicent",cas:"La Mare de Déu y San Vicente"},s:"vec"}
 ];
 const subs = {
  ink:{val:"Retoladors calibrats sobre paper",cas:"Rotuladores calibrados sobre papel"},
  enc:{val:"Encàrrec de l'alcaldessa de València",cas:"Encargo de la alcaldesa de Valencia"},
  regal:{val:"Regal de la FMIV a l'alcaldessa",cas:"Regalo de la FMIV a la alcaldesa"},
  dana:{val:"Venuda per a ajudar els afectats",cas:"Vendida para ayudar a los afectados"},
- rev:{val:"Il·lustració de portada",cas:"Ilustración de portada"}
+ rev:{val:"Il·lustració de portada",cas:"Ilustración de portada"},
+ vec:{val:"Il·lustració vectorial",cas:"Ilustración vectorial"}
 };
 
 const fites = [
