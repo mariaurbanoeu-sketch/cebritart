@@ -2178,7 +2178,7 @@ $("#fitxa").addEventListener("submit", async e => {
     fd.append("_subject", T[lang].subj + " · " + d.nom); fd.append("_replyto", d.email); fd.append("_template", "table"); fd.append("_captcha", "false"); fd.append("Encàrrec", txt);
     try {
       const r = await fetch(FORM_ENDPOINT, { method: "POST", body: fd, headers: { Accept: "application/json" } });
-      if (!r.ok) throw 0; const j = await r.json().catch(() => ({})); if (String(j.success) === "false" && !/activ/i.test(j.message || "")) throw 0;
+      if (!r.ok) throw 0; const j = await r.json().catch(() => ({})); if (String(j.success) === "false") throw 0;
       grua_emporta(() => { out.hidden = false; out.innerHTML = `<p class="rebut-t">${T[lang].sent(esc(d.nom))}</p>` + copia(); const b = out.getBoundingClientRect(); mascleta(b.left + b.width / 2, b.top, 28); });
     } catch (_) { out.hidden = false; out.innerHTML = mailBlock(T[lang].sendFail); }
   } else {
