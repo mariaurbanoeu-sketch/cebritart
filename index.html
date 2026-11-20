@@ -1105,6 +1105,48 @@ html.sacseja-fort .nav{animation:sacseja .4s linear}
 .retall.solta:nth-child(even){margin-top:0}
 @media (max-width:420px){.retall.solta.ampla{grid-column:span 2}}
 
+
+/* ===== VISCA! EN 3D ===== */
+.llibre3d{--pw:min(36vw,540px,calc((100svh - 13rem) / 1.4143));grid-column:1/-1;margin:.5rem 0 1rem;user-select:none;-webkit-user-select:none}
+.ll-escena{display:flex;justify-content:center;padding:clamp(1rem,3vw,2.4rem) 0 clamp(1.6rem,3vw,2.6rem);perspective:2400px;overflow:hidden}
+.ll-llibre{position:relative;width:calc(var(--pw) * 2);height:calc(var(--pw) * 1.4143);perspective:2600px;transform:rotateX(9deg);transition:transform .7s cubic-bezier(.3,.1,.2,1);touch-action:pan-y;cursor:grab;outline:none}
+.ll-llibre:active{cursor:grabbing}
+.ll-llibre:focus-visible{outline:2px dashed var(--gold);outline-offset:14px}
+.ll-llibre.tancada-davant{transform:rotateX(9deg) translateX(calc(var(--pw) * -.5))}
+.ll-llibre.tancada-darrere{transform:rotateX(9deg) translateX(calc(var(--pw) * .5))}
+.ll-llibre::before{content:"";position:absolute;left:4%;right:4%;bottom:-7%;height:12%;background:radial-gradient(ellipse at 50% 30%,rgba(40,30,15,.35),transparent 70%);filter:blur(6px);z-index:0;transition:left .7s,right .7s}
+.ll-llibre.tancada-davant::before{left:52%}.ll-llibre.tancada-darrere::before{right:52%}
+.ll-full{position:absolute;left:50%;top:0;width:50%;height:100%;transform-origin:0 50%;transform-style:preserve-3d;transition:transform .85s cubic-bezier(.35,.05,.2,1)}
+.ll-full.girat{transform:rotateY(-180deg)}
+.ll-cara{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;overflow:hidden;background:#fbf8f2}
+.ll-cara.darrere{transform:rotateY(180deg)}
+.ll-cara img{width:100%;height:100%;object-fit:cover;display:block;pointer-events:none}
+.ll-cara .ll-ombra{position:absolute;inset:0;pointer-events:none}
+.ll-cara.davant .ll-ombra{background:linear-gradient(90deg,rgba(0,0,0,.28),rgba(0,0,0,.06) 6%,transparent 14%)}
+.ll-cara.darrere .ll-ombra{background:linear-gradient(270deg,rgba(0,0,0,.28),rgba(0,0,0,.06) 6%,transparent 14%)}
+.ll-buida{width:100%;height:100%;background:#f4efe6}
+.ll-full[data-i="0"] .davant{box-shadow:inset 0 0 0 1px rgba(0,0,0,.05)}
+.ll-gruix{position:absolute;top:1px;bottom:1px;z-index:0;pointer-events:none;background:repeating-linear-gradient(90deg,#fff 0 1px,#ddd6c8 1px 2px);box-shadow:0 6px 10px -6px rgba(0,0,0,.4)}
+.ll-gruix.dre{left:100%;width:calc(var(--dre,1) * 7px);border-radius:0 2px 2px 0}
+.ll-gruix.esq{right:100%;width:calc(var(--esq,0) * 7px);border-radius:2px 0 0 2px}
+.ll-ctrl{display:flex;align-items:center;justify-content:center;gap:1rem}
+.ll-ctrl button{width:44px;height:44px;border-radius:50%;border:1.5px solid var(--ink);color:var(--ink);font-size:1.1rem;display:grid;place-items:center}
+.ll-ctrl button:disabled{opacity:.3}
+.ll-pag{min-width:9rem;text-align:center;font-family:var(--serif);font-style:italic;font-size:1.1rem;color:var(--ink)}
+.ll-pista{margin:.6rem 0 0;text-align:center;font-family:var(--serif);font-style:italic;color:var(--ink-soft);font-size:.95rem}
+.ll-zoom{position:fixed;inset:0;z-index:300;background:rgba(18,22,36,.97);display:flex;align-items:center;justify-content:center;padding:3.4rem 1rem 4.6rem}
+.ll-zoom[hidden]{display:none}
+.ll-zoom img{max-width:100%;max-height:100%;object-fit:contain;box-shadow:0 30px 60px -20px rgba(0,0,0,.7);background:#fff}
+.ll-tanca{position:absolute;top:.6rem;right:.8rem;width:44px;height:44px;border-radius:50%;color:#fff;font-size:1.8rem;line-height:1}
+.ll-zoom-nav{position:absolute;bottom:1rem;left:0;right:0;display:flex;justify-content:center;align-items:center;gap:1.2rem;color:#fff;font-family:var(--serif);font-style:italic}
+.ll-zoom-nav button{width:44px;height:44px;border-radius:50%;border:1.5px solid rgba(255,255,255,.7);color:#fff}
+html.ll-zoom-obert{overflow:hidden}
+.panel-visca{grid-template-columns:minmax(0,1fr)!important}
+.panel-visca .meta{max-width:46rem;position:static}
+.ll-pista{max-width:none!important;margin-inline:auto!important}
+@media (max-width:700px){.llibre3d{--pw:min(46vw,320px)}.ll-llibre{transform:none}.ll-llibre.tancada-davant{transform:translateX(calc(var(--pw) * -.5))}.ll-llibre.tancada-darrere{transform:translateX(calc(var(--pw) * .5))}}
+@media (prefers-reduced-motion:reduce){.ll-full,.ll-llibre{transition:none}}
+
 /* ===== GRÚA 3D ===== */
 .hero{position:relative;isolation:isolate}
 .hero>.wrap{position:relative;z-index:2;width:100%}
@@ -1750,6 +1792,7 @@ const projects = [
  {id:"visca",name:"Visca!",kind:{val:"Revista fallera",cas:"Revista fallera"},
   p:{val:"Disseny editorial en tres seccions i un especial dedicat a la DANA. Titulars en tipografia Metxa per a reforçar la identitat valenciana.",cas:"Diseño editorial en tres secciones y un especial dedicado a la DANA. Titulares en tipografía Metxa para reforzar la identidad valenciana."},
   li:{val:["Maquetació","Portada i especial DANA"],cas:["Maquetación","Portada y especial DANA"]},
+  llibre:true,
   imgs:["assets/proyectos/nou/visca-mockup.webp"]},
  {id:"jubileu",name:{val:"Jubileu 2025",cas:"Jubileo 2025"},kind:{val:"Samarreta per a pelegrins",cas:"Camiseta para peregrinos"},
   p:{val:"Propostes per al concurs de la samarreta del Jubileu dels Joves, unificades després en una samarreta de record: Sant Peregrí i la Cúpula de l'Esperança.",cas:"Propuestas para el concurso de la camiseta del Jubileo de los Jóvenes, unificadas después en una camiseta de recuerdo: Santi peregrino y la Cúpula de la Esperanza."},
@@ -1924,16 +1967,25 @@ const figmaEmbed = u => { try { const x = new URL(u); if (!/figma\.com$/.test(x.
 /* ================= PROJECTES ================= */
 let current = "f26";
 const shelf = () => [{ id: "f26", name: { val: "Falles 2026", cas: "Fallas 2026" }, thumb: "assets/grafic/falles-2026/cartells/principal.webp" }, ...projects];
+const VISCA = { portada: "assets/visca/portada.webp", contra: "assets/visca/contra.webp", interior: Array.from({ length: 32 }, (_, k) => `assets/visca/p${String(k + 1).padStart(2, "0")}.webp`) };
+function muntaVisca(){ const h = $("#viscaLlibre"); if (!h || !window.__llibre) return;
+  const val = lang === "val";
+  window.__llibre(h, VISCA, { onFlip: () => { window.__so && window.__so.pop(.12, "paper"); window.__so && window.__so.vibra("petit"); },
+    text: { label: "Revista Visca!", ant: val ? "Pàgina anterior" : "Página anterior", seg: val ? "Pàgina següent" : "Página siguiente", tanca: val ? "Tanca" : "Cierra", portada: val ? "Portada" : "Portada", contra: val ? "Contraportada" : "Contraportada", interior: val ? "Interior" : "Interior",
+      pista: tactil ? (val ? "Toca la portada per a obrir-la, llisca per a passar pàgina i toca una pàgina per a ampliar-la." : "Toca la portada para abrirla, desliza para pasar página y toca una página para ampliarla.") : (val ? "Fes clic a la portada per a obrir-la, arrossega per a passar pàgina i fes clic en una pàgina per a ampliar-la." : "Haz clic en la portada para abrirla, arrastra para pasar página y haz clic en una página para ampliarla.") } }); }
+window.__muntaVisca = () => muntaVisca();
 function renderProjects(){
   $("#tabs").innerHTML = shelf().map((p, k) => `<button class="tab maqueta" role="tab" id="tab-${p.id}" aria-controls="pan-${p.id}" aria-selected="${p.id === current}" tabindex="${p.id === current ? 0 : -1}" data-id="${p.id}" style="--r:${[-2, 1.5, -1, 2, -1.5, 1, -2.5, 1.8][k % 8]}deg"><span class="caixa"><img src="${p.thumb || p.imgs[0]}" alt="" loading="lazy"></span><span class="etiqueta">${L(p.name)}</span></button>`).join("");
   $("#panels").innerHTML = projects.map(p => `
-    <div class="panel" role="tabpanel" id="pan-${p.id}" aria-labelledby="tab-${p.id}" ${p.id === current ? "" : "hidden"}>
+    <div class="panel${p.id === "visca" ? " panel-visca" : ""}" role="tabpanel" id="pan-${p.id}" aria-labelledby="tab-${p.id}" ${p.id === current ? "" : "hidden"}>
       <div class="meta"><h3>${L(p.name)}</h3><p class="kind">${L(p.kind)}</p><p>${L(p.p)}</p><ul>${L(p.li).map(x => `<li>${x}</li>`).join("")}</ul>${p.reel ? `<a class="reel-link" href="${p.reel}" target="_blank" rel="noopener">${lang === "val" ? "Mira el reel de com el vaig fer ↗" : "Mira el reel de cómo lo hice ↗"}</a>` : ""}</div>
       ${p.id === "passaport" && FIGMA_PROTO ? `<div class="proto"><div class="proto-mobil"><div class="proto-pantalla" id="protoPantalla"><button class="btn" type="button" id="protoObri">${lang === "val" ? "Prova l'app" : "Prueba la app"}</button><small>${lang === "val" ? "Prototip interactiu de Figma: toca i navega com si fora el teu mòbil." : "Prototipo interactivo de Figma: toca y navega como si fuera tu móvil."}</small></div></div><a class="proto-obri" href="${FIGMA_PROTO.replace("&show-proto-sidebar=1", "")}" target="_blank" rel="noopener">${lang === "val" ? "Obri el prototip a Figma ↗" : "Abre el prototipo en Figma ↗"}</a></div>` : ""}
+      ${p.id === "visca" ? `<div class="visca-llibre" id="viscaLlibre"></div>` : ""}
       <div class="cas-galeria"><button class="gran" data-lb="p-${p.id}" data-i="0" aria-label="${L(p.name)} 1"><img src="${p.imgs[0]}" alt="${L(p.name)}" loading="lazy"></button>
         ${p.taulells ? `<div class="taulells-reals" aria-label="${lang === "val" ? "Els taulells" : "Los azulejos"}">${p.taulells.map((t, k) => `<img src="${t}" alt="" loading="lazy" style="--k:${k}">`).join("")}</div>` : ""}
         <div class="resta">${p.imgs.slice(1).map((s, i) => `<button data-lb="p-${p.id}" data-i="${i + 1}" aria-label="${L(p.name)} ${i + 2}"><img src="${s}" alt="${L(p.name)}, ${i + 2}" loading="lazy"></button>`).join("")}</div></div>
     </div>`).join("");
+  muntaVisca();
 }
 const fullaOf = {};
 function pagHTML(src, cls){ return `<div class="pag ${cls}">${src ? `<img src="${src}" alt="" loading="lazy">` : ""}</div>`; }
@@ -2683,6 +2735,8 @@ import { grua } from "./assets/js/grua.js";
 import { revista } from "./assets/js/revista.js";
 import { castell } from "./assets/js/castell.js";
 import { maquetes } from "./assets/js/maquetes.js";
+import { llibre } from "./assets/js/llibre.js";
+window.__llibre = llibre; try { window.__muntaVisca && window.__muntaVisca(); } catch (e) { console.error(e); }
 try {
   const d = window.__maqDades(), mh = document.getElementById("maq3d");
   window.__maq = maquetes(mh, d.items, { current: d.current, onPick: id => window.__maqDades().select(id) });
