@@ -330,8 +330,8 @@ section{padding:clamp(5rem,11vw,9rem) 0;position:relative}
 .crema .burn{background:#fff;padding:8px;transform:rotate(4deg);position:relative;box-shadow:0 20px 50px -24px rgba(120,95,50,.6)}
 .crema .burn img{width:100%;height:auto;transition:filter 2s}
 .crema .burn::after{content:"";position:absolute;inset:8px;background:radial-gradient(ellipse at 50% 120%,rgba(230,140,60,.55),rgba(198,181,148,.35) 40%,transparent 70%);opacity:0;transition:opacity 2s;mix-blend-mode:multiply}
-.crema.lit .burn::after{opacity:1}
-.crema.lit .burn img{filter:sepia(.5) contrast(1.1)}
+.crema .burn::after{display:none}
+
 .foot{position:relative;z-index:1;margin-top:clamp(4rem,8vw,6rem);padding-top:1.4rem;border-top:1.5px solid var(--beix);display:flex;flex-wrap:wrap;justify-content:space-between;gap:1rem;font-size:.92rem;color:var(--ink-soft)}
 .foot nav{display:flex;gap:1.4rem;flex-wrap:wrap}
 .foot a{text-decoration:none}
@@ -659,8 +659,8 @@ html,body{overflow-x:clip}
 
 /* ---------- la cremà de la làmina ---------- */
 @property --b{syntax:"<percentage>";inherits:false;initial-value:0%}
-.crema .burn img{-webkit-mask-image:linear-gradient(to top,transparent var(--b),#000 calc(var(--b) + 6%));mask-image:linear-gradient(to top,transparent var(--b),#000 calc(var(--b) + 6%));transition:--b 6s cubic-bezier(.4,0,.2,1), filter 2s}
-.crema.lit .burn img{--b:58%}
+
+
 .crema .burn .flama{position:absolute;left:8px;right:8px;bottom:8px;height:58%;pointer-events:none;background:linear-gradient(to top,rgba(240,150,60,.0),rgba(240,150,60,.0));transition:opacity 6s}
 .premsa{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1.2rem;margin-top:clamp(3rem,6vw,5rem)}
 .premsa h3{grid-column:1 / -1;font-size:clamp(1.8rem,3vw,2.6rem)}
@@ -838,13 +838,14 @@ html.canviant body *{transition-duration:0s!important}
 
 
 /* prestatgeria 3D */
-.maq-3d{height:clamp(420px,62vw,760px);margin:0 auto 1.4rem;max-width:1100px}
+.maq-3d{aspect-ratio:1.85;margin:0 auto 1.4rem;max-width:1100px}
+@media (max-width:900px){.maq-3d{aspect-ratio:1.3}}
 .maq-canvas{display:block}
 .prestatge.amb-3d{display:flex!important;flex-wrap:wrap;justify-content:center;gap:.5rem!important;margin-bottom:2.4rem;padding:0!important;overflow:visible!important}
 .prestatge.amb-3d .maqueta{padding:0!important;flex:none}
 .prestatge.amb-3d .maqueta::after,.prestatge.amb-3d .caixa{display:none}
 .prestatge.amb-3d .etiqueta{position:static;transform:none;font-size:.85rem;padding:.3rem .8rem;border-radius:999px}
-@media (max-width:560px){.maq-3d{height:clamp(520px,150vw,820px)}.prestatge.amb-3d .etiqueta{font-size:.76rem}}
+@media (max-width:560px){.maq-3d{aspect-ratio:.62}.prestatge.amb-3d .etiqueta{font-size:.76rem}}
 
 /* la nit del recorregut */
 html.nav-nit .nav{--ink:#f1e6cb;--ink-soft:#b6c3db;--paper:#1c2d4f;color:var(--ink)}
@@ -1035,6 +1036,56 @@ html.sacseja-fort .nav{animation:sacseja .4s linear}
 .proto-pantalla iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
 @media (max-width:1060px){.panel:has(.proto){grid-template-columns:minmax(0,1fr)}.proto{order:-1}}
 
+
+/* taulells reals d'A la Fressca */
+.taulells-reals{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:0;border:1px solid #d9def0;background:#fff}
+.taulells-reals img{width:100%;aspect-ratio:1;object-fit:cover;display:block;transition:transform .3s}
+.taulells-reals img:hover{transform:scale(1.06);position:relative;z-index:1;box-shadow:0 8px 18px -8px rgba(40,50,110,.5)}
+.reel-link{display:inline-block;margin-top:1rem;font-weight:600;text-decoration:underline;text-underline-offset:4px}
+
+.retall .foto2{position:absolute;left:-1.4rem;bottom:4.4rem;width:58%;background:#fff;padding:4px 4px 10px;transform:rotate(-6deg);box-shadow:0 8px 14px -8px rgba(60,40,10,.6);z-index:2}
+.retall .foto2 img{width:100%;aspect-ratio:3/2;object-fit:cover}
+.anim-prox{position:absolute;inset:0;display:grid;place-items:center;margin:0;font-family:var(--serif);font-style:italic;font-size:1.4rem;color:#b6c3db;pointer-events:none}
+.animatic.te-video .anim-prox{display:none}
+.autoretrat{float:right;width:clamp(150px,30%,240px);margin:0 0 1rem 1.6rem;background:#fff;padding:8px 8px 12px;transform:rotate(2deg);box-shadow:0 14px 26px -16px rgba(0,0,0,.55)}
+.autoretrat img{width:100%;height:auto;display:block}
+.autoretrat[hidden]{display:none}
+
+/* ===== LA CAPELLA ===== */
+.capella{text-align:center}
+.capella .sec-head{display:block;max-width:40rem;margin:0 auto 2.4rem}
+.capella .sec-head p{margin-top:.8rem}
+.altar{display:grid;grid-template-columns:1fr auto 1fr;align-items:end;gap:clamp(1rem,4vw,3.4rem);max-width:980px;margin:0 auto}
+.fornicula{position:relative;margin:0;width:min(440px,72vw);padding:clamp(14px,2vw,22px);border-radius:999px 999px 6px 6px;background:linear-gradient(#e9cf8f,#be9c59);box-shadow:0 0 0 2px #8c6c2c inset,0 0 0 10px rgba(190,156,89,.25),0 40px 80px -40px rgba(0,0,0,.7),0 0 120px -20px rgba(255,205,120,.35);transition:opacity .28s,transform .28s}
+.fornicula.canvia{opacity:.25;transform:scale(.98)}
+.fornicula .raigs{position:absolute;inset:-18% -24% 10%;z-index:-1;background:repeating-conic-gradient(from 0deg at 50% 45%,rgba(242,201,76,.32) 0 4deg,transparent 4deg 12deg);-webkit-mask-image:radial-gradient(closest-side at 50% 45%,#000 40%,transparent);mask-image:radial-gradient(closest-side at 50% 45%,#000 40%,transparent);animation:raigs 60s linear infinite}
+@keyframes raigs{to{rotate:360deg}}
+.fornicula-img{display:block;width:100%;aspect-ratio:3/4;border-radius:999px 999px 4px 4px;overflow:hidden;background:#fdfbf4;cursor:pointer}
+.fornicula-img img{width:100%;height:100%;object-fit:contain;background:#fdfbf4}
+.fornicula figcaption{margin-top:.9rem;font-family:var(--serif);font-style:italic;font-size:1.15rem;color:#2f2414}
+.altar-espelmes{display:flex;align-items:flex-end;justify-content:center;gap:clamp(.6rem,1.6vw,1.2rem);padding-bottom:1.2rem}
+.altar-espelmes i{position:relative;width:16px;height:var(--h,90px);background:linear-gradient(90deg,#efe6d2,#fffaf0 40%,#e2d6bb);border-radius:3px 3px 2px 2px;box-shadow:0 10px 18px -10px rgba(0,0,0,.6)}
+.altar-espelmes i:nth-child(1){--h:70px}.altar-espelmes i:nth-child(2){--h:110px}.altar-espelmes i:nth-child(3){--h:84px}
+.altar-espelmes i::before{content:"";position:absolute;left:50%;top:-6px;width:2px;height:7px;margin-left:-1px;background:#2b2b2b}
+.altar-espelmes i::after{content:"";position:absolute;left:50%;bottom:calc(100% + 4px);width:12px;height:22px;margin-left:-6px;border-radius:50% 50% 45% 45%/60% 60% 40% 40%;background:radial-gradient(ellipse at 50% 70%,#fff8d8 0 22%,#ffd36b 45%,rgba(255,140,40,.85) 70%,transparent 72%);filter:drop-shadow(0 0 8px rgba(255,190,90,.9));opacity:0;transform-origin:50% 100%;transition:opacity .4s}
+.altar-espelmes i.on::after{opacity:1;animation:flama 1.6s ease-in-out infinite alternate}
+.altar-espelmes i.on{box-shadow:0 10px 18px -10px rgba(0,0,0,.6),0 -40px 60px -30px rgba(255,190,90,.55)}
+@keyframes flama{0%{transform:scale(1,1) rotate(-2deg)}50%{transform:scale(.92,1.08) rotate(2deg)}100%{transform:scale(1.04,.95) rotate(-1deg)}}
+.capella-tria{display:flex;flex-wrap:wrap;justify-content:center;gap:.8rem;margin:2.2rem auto 1.2rem}
+.capella-tria button{width:62px;aspect-ratio:3/4;border-radius:999px 999px 3px 3px;overflow:hidden;background:#fdfbf4;padding:3px;box-shadow:0 0 0 1px rgba(226,194,127,.5);opacity:.7;transition:opacity .2s,transform .25s}
+.capella-tria button img{width:100%;height:100%;object-fit:cover;border-radius:inherit}
+.capella-tria button:hover,.capella-tria button[aria-pressed="true"]{opacity:1;transform:translateY(-4px);box-shadow:0 0 0 2px #e2c27f,0 10px 20px -10px rgba(255,200,120,.6)}
+.espelma-btn{margin:0 auto}
+@media (max-width:640px){.altar{grid-template-columns:minmax(0,1fr)}.altar-espelmes{display:none}.fornicula{margin:0 auto}}
+@media (prefers-reduced-motion:reduce){.fornicula .raigs,.altar-espelmes i.on::after{animation:none}}
+
+
+/* la cremà: la falla es crema, es fa cendra i en queda l'estructura de fusta */
+.crema .burn{cursor:pointer}
+#burnCv{position:absolute;inset:8px;width:calc(100% - 16px);height:calc(100% - 16px);display:block;opacity:0;transition:opacity .4s}
+.burn.cv #burnCv{opacity:1}
+.burn.cv img{visibility:hidden}
+
 /* ===== GRÚA 3D ===== */
 .hero{position:relative;isolation:isolate}
 .hero>.wrap{position:relative;z-index:2;width:100%}
@@ -1071,8 +1122,8 @@ html.sacseja-fort .nav{animation:sacseja .4s linear}
 <canvas id="ink" aria-hidden="true"></canvas>
 <svg id="nib" viewBox="0 0 44 44" aria-hidden="true">
   <g class="pen">
-    <path d="M7 7 C10 9 9 12 13 13" fill="none" stroke="#a38a62" stroke-width="1.6" stroke-linecap="round"/>
-    <g transform="rotate(45 26 26)"><rect x="20" y="10" width="12" height="30" rx="2.5" fill="#c3272b"/><rect x="20" y="10" width="12" height="4" rx="1.5" fill="#c6b594"/><rect x="20" y="36" width="12" height="4" rx="1.5" fill="#c6b594"/><rect x="20" y="22" width="12" height="3" fill="#be9c59"/></g>
+    <g transform="rotate(-45 26 26)"><rect x="20" y="10" width="12" height="30" rx="2.5" fill="#c3272b"/><rect x="20" y="10" width="12" height="4" rx="1.5" fill="#c6b594"/><rect x="20" y="36" width="12" height="4" rx="1.5" fill="#c6b594"/><rect x="20" y="22" width="12" height="3" fill="#be9c59"/></g>
+    <path d="M7 7 C10.5 7.5 9.5 11.5 13 12.5 C14.5 13 15.2 14 15.8 15.4" fill="none" stroke="#a38a62" stroke-width="1.7" stroke-linecap="round"/>
     <use class="flama" href="#d16" x="1" y="1" width="12" height="12" fill="#e9a23b"/>
   </g>
   <g class="spark"><use href="#d16" x="-8" y="-8" width="30" height="30" fill="#be9c59"/></g>
@@ -1087,7 +1138,8 @@ html.sacseja-fort .nav{animation:sacseja .4s linear}
     <ul class="nav-links" id="navlinks">
       <li><a href="#ninots" data-i18n="nav.ninots">La paret</a></li>
       <li><a href="#fites" data-i18n="nav.fites">El suro</a></li>
-      <li><a href="#disseny" data-i18n="nav.disseny">Les maquetes</a></li>
+      <li><a href="#disseny" data-i18n="nav.disseny">Els projectes</a></li>
+      <li><a href="#capella" data-i18n="nav.capella">La capella</a></li>
       <li><a href="#pinta" data-i18n="nav.pinta">Pinta</a></li>
       <li><a href="#artista" data-i18n="nav.artista">L'artista</a></li>
       <li><a href="#encarrecs" data-i18n="nav.encarrecs">Encàrrecs</a></li>
@@ -1160,11 +1212,7 @@ html.sacseja-fort .nav{animation:sacseja .4s linear}
   </div>
 </section>
 
-<!-- ============ PAUSA ============ -->
-<figure class="pausa" aria-label="Senyor pirotècnic, il·lustració a tinta">
-  <img src="assets/ilustra/serie-7-senyorpirotecnic.webp" alt="" loading="lazy">
-  <figcaption data-i18n="pausa.c">«Senyor pirotècnic, pot començar la mascletà.» Retoladors calibrats sobre paper.</figcaption>
-</figure>
+
 
 
 <!-- ============ FITES ============ -->
@@ -1213,6 +1261,27 @@ html.sacseja-fort .nav{animation:sacseja .4s linear}
 <div class="capvespre" id="capvespre" aria-hidden="true"><div class="cel" id="cel"></div><p class="capvespre-t" data-i18n="cap.t">I es fa de nit a València</p></div>
 <div class="zona-nit" id="zonaNit">
 <div class="garlanda" id="garlanda" aria-hidden="true"></div>
+<!-- ============ LA CAPELLA ============ -->
+<section id="capella" class="capella">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 data-i18n="cap.h">La capella</h2>
+      <p data-i18n="cap.p">La Mare de Déu dels Desemparats i les il·lustracions religioses són de les que més vos agraden. Ací tenen la seua capella.</p>
+    </div>
+    <div class="altar">
+      <div class="altar-espelmes esq" aria-hidden="true"><i></i><i></i><i></i></div>
+      <figure class="fornicula" id="capFig">
+        <div class="raigs" aria-hidden="true"></div>
+        <button class="fornicula-img" id="capBtn" type="button"><img id="capImg" src="" alt=""></button>
+        <figcaption id="capCap"></figcaption>
+      </figure>
+      <div class="altar-espelmes dre" aria-hidden="true"><i></i><i></i><i></i></div>
+    </div>
+    <div class="capella-tria" id="capTria" role="group" aria-label="Il·lustracions"></div>
+    <button class="btn ghost espelma-btn" id="espelma" type="button"><span data-i18n="cap.esp">Encén una espelma</span></button>
+  </div>
+</section>
+
 <section id="ofrena">
   <div class="wrap ofrena-grid">
     <figure class="ofrena-fig"><img src="assets/ilustra/serie-11-maredeueta.webp" alt="La Mare de Déu i l'Ofrena, il·lustració a tinta" width="827" height="1154" loading="lazy" id="oImg"><canvas id="oCanvas" aria-hidden="true"></canvas></figure>
@@ -1229,7 +1298,7 @@ html.sacseja-fort .nav{animation:sacseja .4s linear}
   <div class="wrap pinta-grid">
     <div>
       <h2 data-i18n="pin.t">La taula de dibuix</h2>
-      <p class="lede" style="margin-top:1.2rem" data-i18n="pin.lede">Una de les il·lustracions a tinta de Miguel, per a pintar-la com vulgues. Tria un color i toca on el vols.</p>
+      <p class="lede" style="margin-top:1.2rem" data-i18n="pin.lede">Una de les meues il·lustracions a tinta, per a pintar-la com vulgues. Tria un color i toca on el vols.</p>
       <div class="carpeta" id="carpeta" role="group" aria-label="Làmines"></div>
       <div class="paleta" id="paleta" role="group" aria-label="Colors"></div>
       <div class="eines">
@@ -1252,7 +1321,7 @@ html.sacseja-fort .nav{animation:sacseja .4s linear}
     </div>
     <div class="anims">
       <figure class="anim a1"><div class="screen"><video src="assets/animacio/caminata.mp4" muted loop playsinline preload="none" data-auto width="1280" height="720"></video></div><figcaption data-i18n="an.1">Passeig per l'Albufera<small>Cicle de caminada, 17 s</small></figcaption></figure>
-      <figure class="anim"><div class="screen"><video src="assets/animacio/rat-penat.mp4" muted loop playsinline preload="none" data-auto width="960" height="540"></video></div><figcaption data-i18n="an.2">El rat penat es desperta<small>Bucle, 5 s</small></figcaption></figure>
+      <figure class="anim animatic" id="animatic"><div class="screen"><video src="assets/animacio/animatic-jaume-i.mp4" controls playsinline preload="none" width="1280" height="720"></video><p class="anim-prox" aria-hidden="true">Animatic</p></div><figcaption data-i18n="an.2">El Rat Penat de Jaume I<small>Animatic a partir del meu storyboard</small></figcaption></figure>
       <figure class="anim"><div class="screen"><video src="assets/animacio/farton.mp4" muted loop playsinline preload="none" data-auto></video></div><figcaption data-i18n="an.3">El Xato, de La Xata<small>Bucle per a xarxes</small></figcaption></figure>
     </div>
   </div>
@@ -1263,14 +1332,15 @@ html.sacseja-fort .nav{animation:sacseja .4s linear}
 <section id="artista">
   <div class="wrap artista-grid">
     <div>
+      <figure class="autoretrat" hidden><img src="assets/brand/autoretrat.webp" alt="Autoretrat de Miguel Ruiz en el seu estil" onload="this.parentNode.hidden=false" onerror="this.parentNode.remove()"></figure>
       <h2 data-i18n="art.t">L'artista</h2>
-      <p class="lede" data-i18n="art.lede">Des de xicotet diu que vol ser artista faller. Ara ho està fent possible.</p>
+      <p class="lede" data-i18n="art.lede">Des de xicotet vull ser artista faller. Ara ho estic fent possible.</p>
       <p data-i18n="art.p1" style="margin-top:1.4rem"></p>
       <p data-i18n="art.p2"></p>
       <blockquote class="quote" data-i18n="art.q"></blockquote>
       <p data-i18n="art.p3"></p>
       <p data-i18n="art.p4"></p>
-      <div class="tools"><span>Procreate</span><span>Adobe CC</span><span>Cinema 4D</span><span>Figma</span><span>CapCut</span><span data-i18n="art.lang">Valencià C1</span></div>
+      <div class="tools"><span>Procreate</span><span>Adobe Creative Cloud</span><span>Cinema 4D</span><span>Figma</span><span>CapCut</span><span data-i18n="art.lang">Valencià C1</span><span data-i18n="art.eng">Anglès B1</span></div>
     </div>
     <figure class="phone">
       <video id="ajVideo" src="assets/video/ajuntament.mp4" poster="assets/video/ajuntament-poster.jpg" playsinline preload="none" width="720" height="1280"></video>
@@ -1312,8 +1382,8 @@ html.sacseja-fort .nav{animation:sacseja .4s linear}
         <p class="kind-desc" id="kindDesc" aria-live="polite"></p>
       </fieldset>
       <fieldset class="pas" data-pas="3">
-        <legend class="pas-t" data-i18n="pas.3">Conta-li la idea, com si l'escrigueres al llibret.</legend>
-        <div class="field llibret-pag"><label for="fMsg" class="sr-only" data-i18n="form.msg">Conta-li el projecte</label><textarea id="fMsg" name="msg" required></textarea></div>
+        <legend class="pas-t" data-i18n="pas.3">Conta'm la idea, com si l'escrigueres al llibret.</legend>
+        <div class="field llibret-pag"><label for="fMsg" class="sr-only" data-i18n="form.msg">Conta'm el projecte</label><textarea id="fMsg" name="msg" required></textarea></div>
       </fieldset>
       <fieldset class="pas" data-pas="4">
         <legend class="pas-t" data-i18n="pas.4">Per a quan ho vols, i quant penses gastar?</legend>
@@ -1368,7 +1438,7 @@ html.sacseja-fort .nav{animation:sacseja .4s linear}
       <div class="cr-cal">
         <ol class="calendari" id="calendari" aria-label="Calendari faller"></ol>
       </div>
-      <figure class="burn"><img id="peuImg" src="assets/ilustra/serie-12-crema.webp" alt="La Cremà, il·lustració a tinta" width="813" height="1154" loading="lazy"></figure>
+      <figure class="burn" id="burn"><img id="peuImg" src="assets/ilustra/serie-12-crema.webp" alt="La Cremà, il·lustració a tinta" width="813" height="1154" loading="lazy"><canvas id="burnCv" aria-hidden="true"></canvas></figure>
     </div>
     <div class="foot">
       <span>© <span id="yr">2026</span> Miguel Ruiz · Cebritart</span>
@@ -1404,9 +1474,9 @@ const store = { get(k){ try{return localStorage.getItem(k)}catch(e){return null}
 const T = {
 val:{
  loader:"Encenent la traca…",
- "nav.ninots":"La paret","nav.fites":"El suro","nav.falles":"Falles 2026","nav.disseny":"Les maquetes","nav.pinta":"Pinta","nav.anim":"Animació","nav.artista":"L'artista","nav.encarrecs":"Encàrrecs",
+ "nav.ninots":"La paret","nav.fites":"El suro","nav.falles":"Falles 2026","nav.disseny":"Els projectes","nav.pinta":"Pinta","nav.capella":"La capella","nav.anim":"Animació","nav.artista":"L'artista","nav.encarrecs":"Encàrrecs",
  "hero.pre":"El taller de","hero.lede":"Il·lustració a tinta, Falles i molta terreta. Sóc Miguel Ruiz, dibuixe València línia a línia i vull ser artista faller.",
- "hero.cta1":"Mira els ninots","hero.cta2":"Encarrega una il·lustració","hero.sig":"Miguel Ruiz, @cebritart","hero.grua":"Fes clic a la zebra","ninots.mes":"Mostra totes les làmines","hero.grua.tac":"Toca la zebra","rv.pista.tac":"Llisca per a girar-la. Toca-la per a obrir-la.","cas.pista.tac":"Toca el cel per a llançar-ne un","pas.1":"Primer, qui eres?","pas.2":"Què necessites? Agafa una targeta de la taula.","pas.3":"Conta-li la idea, com si l'escrigueres al llibret.","pas.4":"Per a quan ho vols, i quant penses gastar?","pas.5":"Clava les referències al suro i revisa l'albarà.","pas.ant":"Arrere","pas.seg":"Següent","taco.cap":"Calendari faller","taco.pista":"Arranca'n un full.","cap.t":"I es fa de nit a València","cas.pista":"Fes clic al cel per a llançar-ne un","rv.pista":"Arrossega per a girar-la. Fes clic per a obrir-la.",
+ "hero.cta1":"Mira els ninots","hero.cta2":"Encarrega una il·lustració","hero.sig":"Miguel Ruiz, @cebritart","hero.grua":"Fes clic a la zebra","cap.h":"La capella","cap.p":"La Mare de Déu dels Desemparats i les il·lustracions religioses són de les que més vos agraden. Ací tenen la seua capella.","cap.esp":"Encén una espelma","ninots.mes":"Mostra totes les làmines","hero.grua.tac":"Toca la zebra","rv.pista.tac":"Llisca per a girar-la. Toca-la per a obrir-la.","cas.pista.tac":"Toca el cel per a llançar-ne un","pas.1":"Primer, qui eres?","pas.2":"Què necessites? Agafa una targeta de la taula.","pas.3":"Conta'm la idea, com si l'escrigueres al llibret.","pas.4":"Per a quan ho vols, i quant penses gastar?","pas.5":"Clava les referències al suro i revisa l'albarà.","pas.ant":"Arrere","pas.seg":"Següent","taco.cap":"Calendari faller","taco.pista":"Arranca'n un full.","cap.t":"I es fa de nit a València","cas.pista":"Fes clic al cel per a llançar-ne un","rv.pista":"Arrossega per a girar-la. Fes clic per a obrir-la.",
  "ninots.t":"La paret","ninots.p":"El que hi ha penjat a la paret de la nau: la sèrie de dotze il·lustracions de Falles a retoladors calibrats, els encàrrecs per a les Falleres Majors i les il·lustracions solidàries de la DANA. Fes clic en una làmina per a despegar-la.",
  "nit.cap":"Nit del Foc a Instagram","corda.t":"La cordà","corda.hint":"La metxa encén cada fita. Arrossega per a seguir la cordà.",
  "ind.note":"Com a les Falles, només un ninot pot ser indultat. Tria el teu.", ind:"Indulta", indOk:"Indultat", indSeg:"Indultat!",
@@ -1418,23 +1488,23 @@ val:{
  "pausa.c":"Senyor pirotècnic. Retoladors calibrats sobre paper, de la sèrie de Falles.",
  "q.t":"Portades","q.p":"Passa per damunt per a fullejar-les o toca per a vore-les en gran.",
  "f.all":"Tot","f.serie":"Sèrie a tinta","f.ffmm":"Falleres majors","f.dana":"DANA","f.vector":"Vectorial","f.enc":"Revistes",
- "fites.t":"El suro","fites.p":"El suro de la nau, on es claven els retalls: el que s'ha fet viral a Instagram i el que n'ha contat la premsa. Va obrir @cebritart en 2019 i en 2024 arribaren les primeres il·lustracions virals.",
+ "fites.t":"El suro","fites.p":"El suro de la nau, on es claven els retalls: el que s'ha fet viral a Instagram i el que n'ha contat la premsa. Vaig obrir @cebritart en 2019 i en 2024 van arribar les meues primeres il·lustracions virals.",
  "c.views":"reproduccions als reels","c.follow":"seguidors a Instagram","c.top":"al vídeo més vist",
  "f26.t":"Falles de València 2026","f26.p":"Proposta d'imatge gràfica. El cartell principal forma una falla plantada amb les figures dels cartells secundaris, que en són els ninots: Cridà, Plantà, Ofrena, Mascletà, Nit del Foc i Cremà.","f26.hint":"Arrossega per a vore més aplicacions",
- "dis.t":"Les maquetes","dis.p":"A la prestatgeria de la nau es guarden els projectes de marca: identitats, packaging, editorial, una app i la proposta de Falles 2026. Tria una maqueta per a vore-la de prop.",
+ "dis.t":"Els projectes","dis.p":"A la prestatgeria de la nau es guarden els projectes de marca: identitats, packaging, editorial, una app i la proposta de Falles 2026. Tria una maqueta per a vore-la de prop.",
  "an.t":"La pantalla del taller","an.p":"Al racó, una pantalla on els personatges es mouen.",
- "an.1":"Passeig per l'Albufera<small>Cicle de caminada, 17 s</small>","an.2":"El rat penat es desperta<small>Bucle, 5 s</small>","an.3":"El Xato, de La Xata<small>Bucle per a xarxes</small>",
- "art.t":"L'artista","art.lede":"Des de xicotet diu que vol ser artista faller. Ara ho està fent possible.",
+ "an.1":"Passeig per l'Albufera<small>Cicle de caminada, 17 s</small>","an.2":"El Rat Penat de Jaume I<small>Animatic a partir del meu storyboard</small>","an.3":"El Xato, de La Xata<small>Bucle per a xarxes</small>",
+ "art.t":"L'artista","art.lede":"Des de xicotet vull ser artista faller. Ara ho estic fent possible.",
  "art.p1":"Estudie Multimèdia i Arts Digitals a la Universitat Catòlica de València. La passió per les Falles i per l'art em va portar a este grau amb un objectiu: ser dissenyador i artista faller.",
  "art.p2":"Dibuixe a mà, amb llapis i retoladors calibrats, i en digital amb Procreate. Treballe la identitat, el packaging, l'editorial i la il·lustració, sempre amb un peu en la tradició valenciana.",
- "art.lang":"Valencià C1","art.cap":"Entrega a les Falleres Majors, a l'Ajuntament",
+ "art.lang":"Valencià C1","art.eng":"Anglès B1","art.cap":"Entrega a les Falleres Majors, a l'Ajuntament",
  "enc.t":"La taula de treball","enc.lede":"Retrats de falleres, il·lustracions per a comissions, cartells, llibrets o un regal amb molta terreta.",
- "form.t":"Albarà d'encàrrec","form.nom":"Com et diuen?","form.tipus":"Què necessites?","form.data":"Per a quan?","form.falla":"Falla o comissió (opcional)","form.msg":"Conta-li la teua idea","form.send":"Prepara el missatge",
+ "form.t":"Albarà d'encàrrec","form.nom":"Com et diuen?","form.tipus":"Què necessites?","form.data":"Per a quan?","form.falla":"Falla o comissió (opcional)","form.msg":"Conta'm la teua idea","form.send":"Prepara el missatge",
  "cr.t":"I l'any que ve, més.","cr.p":"Tota falla acaba en foc i tota cremà en comença una de nova.","cr.credit":'Web: <a href="https://paulaurbanog.com">Paula Urbano</a>',
  kinds:["Il·lustració personalitzada","Món faller","Esdeveniment","Disseny gràfic","Religiosa i valenciana","Altres"],
  "art.lede":"Il·lustrador, artista i dissenyador gràfic. I futur artista faller.",
  "art.p1":"Sóc Miguel Ruiz, estudie Multimèdia i Arts Digitals a la UCV i estic enamorat de València, de les seues tradicions i de la seua cultura. M'agrada contar històries i transmetre emocions dibuixant.",
- "art.p2":"Cebritart ve de molt arrere. De xicotet, mon pare em va crear el primer correu i, com les zebres eren el meu animal preferit, el va anomenar «miguelitocebrita». En 2019 vaig convertir aquell nom en Cebritart. I l'espiral? És el monyo d'una fallera: la meua zebra també porta la seua pinta.",
+ "art.p2":"Cebritart ve de molt arrere. De xicotet, mon pare em va crear el primer correu i, com les zebres eren el meu animal preferit, el va anomenar «miguelitocebrita». En 2019 vaig convertir aquell nom en Cebritart. La meua zebra és una fallera, amb el seu monyo i la seua pinta.",
  "art.q":"Ser artista faller és transmetre il·lusió i emocions a través de l'art. Crear el monument, que és el cor de la festa.",
  "art.p3":"De xicotet vaig ser de la comissió de Sant Ignasi de Loyola, encara que jo volia vore totes les falles de València i al casal no em donava temps. Els meus referents són Ceballos i Sanabria i José Gallego Gallego.",
  "art.p4":"Dibuixe en digital amb Procreate i a mà amb paper, llapis i retoladors. Les Falles, València i la il·lustració religiosa són ma casa, però m'apunte a qualsevol projecte creatiu.",
@@ -1443,11 +1513,11 @@ val:{
  serveis:[["Il·lustració personalitzada","Retrats, falleres, parelles, famílies i regals especials."],["Món faller","Falleres Majors, Corts d'Honor, comissions i celebracions falleres."],["Esdeveniments","Recordatoris i invitacions de comunió, bodes, bateigs i papereria."],["Disseny gràfic","Cartelleria, identitat visual, publicacions i material promocional."],["Il·lustració religiosa i valenciana","Advocacions, festivitats, tradicions i cultura."],["I el que se t'ocórrega","Qualsevol projecte que necessite creativitat."]],
  avis:["<b>Demana pressupost.</b> Cada projecte es valora a part.","Fes l'encàrrec amb <b>un mes d'antelació</b> com a mínim. En Falles, Nadal i Pasqua hi ha molta faena: consulta abans.","Envie a tota Espanya, en digital o en físic. L'enviament el paga el client.","També hi ha <b>làmines</b> d'algunes il·lustracions. Pregunta per la disponibilitat."],
  "enc.env":"Envie a tota Espanya, en digital o en paper (l'enviament va a part). I si t'agrada alguna il·lustració per a tindre-la en làmina, pregunta'm.","form.dataH":"Millor amb un mes de marge. En Falles, Nadal i Pasqua, encara més.","form.presH":"Cada encàrrec el pressuposte a part.",
- "form.mail":"El teu correu","form.pres":"Pressupost aproximat (opcional)","form.files":"Adjunta imatges o referències (opcional)","form.msg":"Conta-li el projecte","form.send":"Envia l'encàrrec",
+ "form.mail":"El teu correu","form.pres":"Pressupost aproximat (opcional)","form.files":"Adjunta imatges o referències (opcional)","form.msg":"Conta'm el projecte","form.send":"Envia l'encàrrec",
  pres:["Encara no ho sé","Menys de 50 €","50 – 150 €","150 – 300 €","Més de 300 €"],
- dateWarn:"Falta menys d'un mes: Miguel et dirà si arriba a temps.",
+ dateWarn:"Falta menys d'un mes: et diré si arribe a temps.",
  compte:(n,f)=>`Falten <b>${n}</b> dies per a la ${f}`, crema:"Cremà", planta:"Plantà", tacoTxt:(n,f)=>n === 1 ? `dia per a la ${f}` : `dies per a la ${f}`, tacoHui:f=>`Hui és la ${f}!`,
- sending:"Enviant…", sent:(n)=>`Encàrrec enviat, ${n}! Miguel et contestarà al teu correu.`, sendFail:"No s'ha pogut enviar. Prova per email:",
+ sending:"Enviant…", sent:(n)=>`Encàrrec enviat, ${n}! Et contestaré al teu correu.`, sendFail:"No s'ha pogut enviar. Prova per email:",
  mailOut:(n)=>`Tot preparat, ${n}. Obri el teu correu per a enviar-lo:`, mailBtn:"Obri el correu", mailNote:"Si has triat fitxers, adjunta'ls al correu abans d'enviar-lo.",
  fileN:(n)=>n===1?"1 fitxer":`${n} fitxers`,
  err:"Falten el teu nom, el correu o el projecte.",
@@ -1460,9 +1530,9 @@ val:{
 },
 cas:{
  loader:"Encendiendo la traca…",
- "nav.ninots":"La pared","nav.fites":"El corcho","nav.falles":"Fallas 2026","nav.disseny":"Las maquetas","nav.pinta":"Pinta","nav.anim":"Animación","nav.artista":"El artista","nav.encarrecs":"Encargos",
+ "nav.ninots":"La pared","nav.fites":"El corcho","nav.falles":"Fallas 2026","nav.disseny":"Los proyectos","nav.pinta":"Pinta","nav.capella":"La capilla","nav.anim":"Animación","nav.artista":"El artista","nav.encarrecs":"Encargos",
  "hero.pre":"El taller de","hero.lede":"Ilustración a tinta, Fallas y mucha terreta. Soy Miguel Ruiz, dibujo Valencia línea a línea y quiero ser artista fallero.",
- "hero.cta1":"Mira los ninots","hero.cta2":"Encarga una ilustración","hero.sig":"Miguel Ruiz, @cebritart","hero.grua":"Haz clic en la cebra","ninots.mes":"Muestra todas las láminas","hero.grua.tac":"Toca la cebra","rv.pista.tac":"Desliza para girarla. Tócala para abrirla.","cas.pista.tac":"Toca el cielo para lanzar uno","pas.1":"Primero, ¿quién eres?","pas.2":"¿Qué necesitas? Coge una tarjeta de la mesa.","pas.3":"Cuéntale la idea, como si la escribieras en el llibret.","pas.4":"¿Para cuándo lo quieres y cuánto piensas gastar?","pas.5":"Clava las referencias en el corcho y revisa el albarán.","pas.ant":"Atrás","pas.seg":"Siguiente","taco.cap":"Calendario fallero","taco.pista":"Arranca una hoja.","cap.t":"Y se hace de noche en Valencia","cas.pista":"Haz clic en el cielo para lanzar uno","rv.pista":"Arrástrala para girarla. Haz clic para abrirla.",
+ "hero.cta1":"Mira los ninots","hero.cta2":"Encarga una ilustración","hero.sig":"Miguel Ruiz, @cebritart","hero.grua":"Haz clic en la cebra","cap.h":"La capilla","cap.p":"La Mare de Déu dels Desemparats y las ilustraciones religiosas son de las que más os gustan. Aquí tienen su capilla.","cap.esp":"Enciende una vela","ninots.mes":"Muestra todas las láminas","hero.grua.tac":"Toca la cebra","rv.pista.tac":"Desliza para girarla. Tócala para abrirla.","cas.pista.tac":"Toca el cielo para lanzar uno","pas.1":"Primero, ¿quién eres?","pas.2":"¿Qué necesitas? Coge una tarjeta de la mesa.","pas.3":"Cuéntame la idea, como si la escribieras en el llibret.","pas.4":"¿Para cuándo lo quieres y cuánto piensas gastar?","pas.5":"Clava las referencias en el corcho y revisa el albarán.","pas.ant":"Atrás","pas.seg":"Siguiente","taco.cap":"Calendario fallero","taco.pista":"Arranca una hoja.","cap.t":"Y se hace de noche en Valencia","cas.pista":"Haz clic en el cielo para lanzar uno","rv.pista":"Arrástrala para girarla. Haz clic para abrirla.",
  "ninots.t":"La pared","ninots.p":"Lo que hay colgado en la pared de la nave: la serie de doce ilustraciones de Fallas con rotuladores calibrados, los encargos para las Falleras Mayores y las ilustraciones solidarias de la DANA. Haz clic en una lámina para despegarla.",
  "nit.cap":"Nit del Foc en Instagram","corda.t":"La cordà","corda.hint":"La mecha enciende cada hito. Arrastra para seguir la cordà.",
  "ind.note":"Como en las Fallas, solo un ninot puede ser indultado. Elige el tuyo.", ind:"Indulta", indOk:"Indultado", indSeg:"¡Indultat!",
@@ -1474,23 +1544,23 @@ cas:{
  "pausa.c":"Senyor pirotècnic. Rotuladores calibrados sobre papel, de la serie de Fallas.",
  "q.t":"Portadas","q.p":"Pasa por encima para hojearlas o tócalas para verlas en grande.",
  "f.all":"Todo","f.serie":"Serie a tinta","f.ffmm":"Falleras mayores","f.dana":"DANA","f.vector":"Vectorial","f.enc":"Revistas",
- "fites.t":"El corcho","fites.p":"El corcho de la nave, donde se clavan los recortes: lo que se ha hecho viral en Instagram y lo que ha contado la prensa. Abrió @cebritart en 2019 y en 2024 llegaron las primeras ilustraciones virales.",
+ "fites.t":"El corcho","fites.p":"El corcho de la nave, donde se clavan los recortes: lo que se ha hecho viral en Instagram y lo que ha contado la prensa. Abrí @cebritart en 2019 y en 2024 llegaron mis primeras ilustraciones virales.",
  "c.views":"reproducciones en reels","c.follow":"seguidores en Instagram","c.top":"en el vídeo más visto",
  "f26.t":"Fallas de Valencia 2026","f26.p":"Propuesta de imagen gráfica. El cartel principal forma una falla plantada con las figuras de los carteles secundarios, que son sus ninots: Cridà, Plantà, Ofrenda, Mascletà, Nit del Foc y Cremà.","f26.hint":"Arrastra para ver más aplicaciones",
- "dis.t":"Las maquetas","dis.p":"En la estantería de la nave se guardan los proyectos de marca: identidades, packaging, editorial, una app y la propuesta de Fallas 2026. Elige una maqueta para verla de cerca.",
+ "dis.t":"Los proyectos","dis.p":"En la estantería de la nave se guardan los proyectos de marca: identidades, packaging, editorial, una app y la propuesta de Fallas 2026. Elige una maqueta para verla de cerca.",
  "an.t":"La pantalla del taller","an.p":"En un rincón, una pantalla donde los personajes se mueven.",
- "an.1":"Paseo por la Albufera<small>Ciclo de caminata, 17 s</small>","an.2":"El rat penat se despierta<small>Bucle, 5 s</small>","an.3":"El Xato, de La Xata<small>Bucle para redes</small>",
- "art.t":"El artista","art.lede":"Desde pequeño dice que quiere ser artista fallero. Ahora lo está haciendo posible.",
+ "an.1":"Paseo por la Albufera<small>Ciclo de caminata, 17 s</small>","an.2":"El Rat Penat de Jaume I<small>Animatic a partir de mi storyboard</small>","an.3":"El Xato, de La Xata<small>Bucle para redes</small>",
+ "art.t":"El artista","art.lede":"Desde pequeño quiero ser artista fallero. Ahora lo estoy haciendo posible.",
  "art.p1":"Estudio Multimedia y Artes Digitales en la Universidad Católica de Valencia. La pasión por las Fallas y por el arte me llevó a este grado con un objetivo: ser diseñador y artista fallero.",
  "art.p2":"Dibujo a mano, con lápiz y rotuladores calibrados, y en digital con Procreate. Trabajo la identidad, el packaging, el editorial y la ilustración, siempre con un pie en la tradición valenciana.",
- "art.lang":"Valenciano C1","art.cap":"Entrega a las Falleras Mayores, en el Ayuntamiento",
+ "art.lang":"Valenciano C1","art.eng":"Inglés B1","art.cap":"Entrega a las Falleras Mayores, en el Ayuntamiento",
  "enc.t":"La mesa de trabajo","enc.lede":"Retratos de falleras, ilustraciones para comisiones, carteles, llibrets o un regalo con mucha terreta.",
- "form.t":"Albarán de encargo","form.nom":"¿Cómo te llamas?","form.tipus":"¿Qué necesitas?","form.data":"¿Para cuándo?","form.falla":"Falla o comisión (opcional)","form.msg":"Cuéntale tu idea","form.send":"Prepara el mensaje",
+ "form.t":"Albarán de encargo","form.nom":"¿Cómo te llamas?","form.tipus":"¿Qué necesitas?","form.data":"¿Para cuándo?","form.falla":"Falla o comisión (opcional)","form.msg":"Cuéntame tu idea","form.send":"Prepara el mensaje",
  "cr.t":"Y el año que viene, más.","cr.p":"Toda falla acaba en fuego y toda cremà empieza una nueva.","cr.credit":'Web: <a href="https://paulaurbanog.com">Paula Urbano</a>',
  kinds:["Ilustración personalizada","Mundo fallero","Evento","Diseño gráfico","Religiosa y valenciana","Otros"],
  "art.lede":"Ilustrador, artista y diseñador gráfico. Y futuro artista fallero.",
  "art.p1":"Soy Miguel Ruiz, estudio Multimedia y Artes Digitales en la UCV y estoy enamorado de Valencia, de sus tradiciones y de su cultura. Me encanta contar historias y transmitir emociones dibujando.",
- "art.p2":"Cebritart viene de muy atrás. De pequeño, mi padre me creó mi primer correo y, como las cebras eran mi animal favorito, lo llamó «miguelitocebrita». En 2019 convertí aquel nombre en Cebritart. ¿Y la espiral? Es el moño de una fallera: mi cebra también lleva su peineta.",
+ "art.p2":"Cebritart viene de muy atrás. De pequeño, mi padre me creó mi primer correo y, como las cebras eran mi animal favorito, lo llamó «miguelitocebrita». En 2019 convertí aquel nombre en Cebritart. Mi cebra es una fallera, con su moño y su peineta.",
  "art.q":"Ser artista fallero es transmitir ilusión y emociones a través del arte. Crear el monumento, que es el corazón de la fiesta.",
  "art.p3":"De pequeño fui de la comisión de Sant Ignasi de Loyola, aunque yo quería ver todas las fallas de Valencia y en el casal no me daba tiempo. Mis referentes son Ceballos y Sanabria y José Gallego Gallego.",
  "art.p4":"Dibujo en digital con Procreate y a mano con papel, lápiz y rotuladores. Las Fallas, Valencia y la ilustración religiosa son mi casa, pero me apunto a cualquier proyecto creativo.",
@@ -1499,11 +1569,11 @@ cas:{
  serveis:[["Ilustración personalizada","Retratos, falleras, parejas, familias y regalos especiales."],["Mundo fallero","Falleras Mayores, Cortes de Honor, comisiones y celebraciones falleras."],["Eventos","Recordatorios e invitaciones de comunión, bodas, bautizos y papelería."],["Diseño gráfico","Cartelería, identidad visual, publicaciones y material promocional."],["Ilustración religiosa y valenciana","Advocaciones, festividades, tradiciones y cultura."],["Y lo que se te ocurra","Cualquier proyecto que necesite creatividad."]],
  avis:["<b>Pide presupuesto.</b> Cada proyecto se valora aparte.","Haz el encargo con <b>un mes de antelación</b> como mínimo. En Fallas, Navidad y Pascua hay mucho trabajo: consulta antes.","Envío a toda España, en digital o en físico. El envío corre a cargo del cliente.","También hay <b>láminas</b> de algunas ilustraciones. Pregunta por la disponibilidad."],
  "enc.env":"Envío a toda España, en digital o en papel (el envío va aparte). Y si te gusta alguna ilustración para tenerla en lámina, pregúntame.","form.dataH":"Mejor con un mes de margen. En Fallas, Navidad y Pascua, todavía más.","form.presH":"Cada encargo lo presupuesto aparte.",
- "form.mail":"Tu correo","form.pres":"Presupuesto aproximado (opcional)","form.files":"Adjunta imágenes o referencias (opcional)","form.msg":"Cuéntale el proyecto","form.send":"Envía el encargo",
+ "form.mail":"Tu correo","form.pres":"Presupuesto aproximado (opcional)","form.files":"Adjunta imágenes o referencias (opcional)","form.msg":"Cuéntame el proyecto","form.send":"Envía el encargo",
  pres:["Aún no lo sé","Menos de 50 €","50 – 150 €","150 – 300 €","Más de 300 €"],
- dateWarn:"Falta menos de un mes: Miguel te dirá si llega a tiempo.",
+ dateWarn:"Falta menos de un mes: te diré si llego a tiempo.",
  compte:(n,f)=>`Faltan <b>${n}</b> días para la ${f}`, crema:"Cremà", planta:"Plantà", tacoTxt:(n,f)=>n === 1 ? `día para la ${f}` : `días para la ${f}`, tacoHui:f=>`¡Hoy es la ${f}!`,
- sending:"Enviando…", sent:(n)=>`¡Encargo enviado, ${n}! Miguel te contestará a tu correo.`, sendFail:"No se ha podido enviar. Prueba por email:",
+ sending:"Enviando…", sent:(n)=>`¡Encargo enviado, ${n}! Te contestaré a tu correo.`, sendFail:"No se ha podido enviar. Prueba por email:",
  mailOut:(n)=>`Todo listo, ${n}. Abre tu correo para enviarlo:`, mailBtn:"Abrir el correo", mailNote:"Si has elegido archivos, adjúntalos al correo antes de enviarlo.",
  fileN:(n)=>n===1?"1 archivo":`${n} archivos`,
  err:"Faltan tu nombre, el correo o el proyecto.",
@@ -1537,14 +1607,10 @@ const ninots = [
  {f:"dana",src:"dana-tots-a-una-veu.webp",w:864,h:1080,t:{val:"Valencians, tots a una veu",cas:"Valencians, tots a una veu"},s:"dana"},
  {f:"dana",src:"dana-el-poble.webp",w:1273,h:1800,t:{val:"Només el poble salva el poble",cas:"Solo el pueblo salva al pueblo"},s:"dana"},
  {f:"dana",src:"dana-valencians.webp",w:1800,h:1800,t:{val:"Valencians, en peu alcem-se",cas:"Valencians, en peu alcem-se"},s:"dana"},
- {f:"vector",src:"../vector/mare-deu-micalet.webp",w:990,h:1400,t:{val:"La Mare de Déu i el Micalet",cas:"La Mare de Déu y el Micalet"},s:"vec"},
  {f:"vector",src:"../vector/valencia-monuments.webp",w:990,h:1400,t:{val:"València",cas:"Valencia"},s:"vec"},
  {f:"vector",src:"../vector/barraca-albufera.webp",w:990,h:1400,t:{val:"La barraca",cas:"La barraca"},s:"vec"},
  {f:"vector",src:"../vector/passeig-platja.webp",w:990,h:1400,t:{val:"Passeig vora la mar",cas:"Paseo junto al mar"},s:"vec"},
- {f:"vector",src:"../vector/mare-deu-raigs.webp",w:990,h:1400,t:{val:"La Geperudeta",cas:"La Geperudeta"},s:"vec"},
- {f:"vector",src:"../vector/fallera-dana.webp",w:990,h:1400,t:{val:"Després de la DANA",cas:"Después de la DANA"},s:"vec"},
- {f:"vector",src:"../vector/albufera-cavall.webp",w:1400,h:990,t:{val:"L'Albufera",cas:"La Albufera"},s:"vec"},
- {f:"vector",src:"../vector/mare-deu-sant-vicent.webp",w:1400,h:990,t:{val:"La Mare de Déu i Sant Vicent",cas:"La Mare de Déu y San Vicente"},s:"vec"}
+ {f:"vector",src:"../vector/fallera-dana.webp",w:990,h:1400,t:{val:"Després de la DANA",cas:"Después de la DANA"},s:"vec"}
 ];
 const subs = {
  ink:{val:"Retoladors calibrats sobre paper",cas:"Rotuladores calibrados sobre papel"},
@@ -1558,22 +1624,22 @@ const subs = {
 const fites = [
  {d:{val:"Nov. 2024",cas:"Nov. 2024"},img:"assets/ilustra/dana-mareta.webp",v:"12M",vl:"views2",href:"https://valenciaplaza.com/valenciaplaza/miguel-llevo-la-dana-a-su-terreno-y-emociono-a-aitana-o-quevedo",
   t:{val:"«Mareta, ampara els pobles»",cas:"«Mareta, ampara els pobles»"},
-  p:{val:"Amb menys de 500 seguidors, les seues il·lustracions de la DANA arriben a milions de persones i les compartixen Aitana, Quevedo i Saiko. Amb les làmines recapta 1.200 € en tres dies per als afectats, i la fallera es converteix en la imatge dels mocadors solidaris de les FMIV.",cas:"Con menos de 500 seguidores, sus ilustraciones de la DANA llegan a millones de personas y las comparten Aitana, Quevedo y Saiko. Con las láminas recauda 1.200 € en tres días para los afectados, y la fallera se convierte en la imagen de los pañuelos solidarios de las FMIV."}},
+  p:{val:"Amb menys de 500 seguidors, les meues il·lustracions de la DANA van arribar a milions de persones i les van compartir Aitana, Quevedo i Saiko. Amb les làmines vaig recaptar 1.200 € en tres dies per als afectats.",cas:"Con menos de 500 seguidores, mis ilustraciones de la DANA llegaron a millones de personas y las compartieron Aitana, Quevedo y Saiko. Con las láminas recaudé 1.200 € en tres días para los afectados."}},
+ {d:{val:"Nov. 2024",cas:"Nov. 2024"},img:"assets/ilustra/dana-valencians.webp",v:"17M",vl:"views2",href:"https://www.instagram.com/cebritart/",
+  t:{val:"«Valencians, en peu alcem-se»",cas:"«Valencians, en peu alcem-se»"},
+  p:{val:"La vaig publicar com a canal d'ajuda: els comentaris eren per a demanar i oferir ajuda. La van compartir artistes i influencers i va arribar a 17 milions de visualitzacions.",cas:"La publiqué como canal de ayuda: los comentarios eran para pedir y ofrecer ayuda. La compartieron artistas e influencers y llegó a 17 millones de visualizaciones."}},
  {d:{val:"Març 2025",cas:"Marzo 2025"},img:"assets/hitos/mocador-solidari.webp",reel:"DHGORj4tfu_",v:"15,6k",
   t:{val:"Un mocador per al Rei",cas:"Un pañuelo para el Rey"},
-  p:{val:"El mocador solidari arriba a les mans del Rei en la seua visita a València.",cas:"El pañuelo solidario llega a manos del Rey en su visita a Valencia."}},
+  p:{val:"La meua fallera es va convertir en la imatge dels mocadors solidaris de les FMIV, i un va arribar a les mans del Rei en la seua visita a València.",cas:"Mi fallera se convirtió en la imagen de los pañuelos solidarios de las FMIV, y uno llegó a manos del Rey en su visita a Valencia."}},
  {d:{val:"Ag. 2025",cas:"Ago. 2025"},img:"assets/grafic/jubileu/camiseta-1.webp",reel:"DNAy8laCVJg",v:"111k",
   t:{val:"Jubileu dels Joves, Roma",cas:"Jubileo de los Jóvenes, Roma"},
-  p:{val:"Dissenya la samarreta dels pelegrins i viu el Jubileu amb el Papa Lleó XIV.",cas:"Diseña la camiseta de los peregrinos y vive el Jubileo con el Papa León XIV."}},
- {d:{val:"Oct. 2025",cas:"Oct. 2025"},img:"assets/ilustra/cort-fmiv-2026.webp",reel:"DPw7knmgm34",v:"237k",
-  t:{val:"Les telefonades de 2026",cas:"Las telefonadas de 2026"},
-  p:{val:"Il·lustra Marta i Carmen, Falleres Majors de València 2026, el dia de la telefonada. Dos reels amb més de 288.000 reproduccions.",cas:"Ilustra a Marta y Carmen, Falleras Mayores de Valencia 2026, el día de la telefonada. Dos reels con más de 288.000 reproducciones."}},
- {d:{val:"Nov. 2025",cas:"Nov. 2025"},img:"assets/ilustra/serie-11-maredeueta.webp",reel:"DQrblCXgixz",v:"876k",
-  t:{val:"València, a 876.000 persones",cas:"Valencia, a 876.000 personas"},
-  p:{val:"El seu vídeo més vist: la Mare de Déu pels carrers de València. 45.000 m'agrada.",cas:"Su vídeo más visto: la Mare de Déu por las calles de Valencia. 45.000 me gusta."}},
+  p:{val:"Vaig dissenyar la samarreta dels pelegrins i vaig viure el Jubileu amb el Papa Lleó XIV.",cas:"Diseñé la camiseta de los peregrinos y viví el Jubileo con el Papa León XIV."}},
+ {d:{val:"2026",cas:"2026"},img:"assets/ilustra/alcaldesa-fmiv.webp",img2:"assets/hitos/alcaldesa-foto.webp",
+  t:{val:"El regal de les FMIV a l'alcaldessa",cas:"El regalo de las FMIV a la alcaldesa"},
+  p:{val:"Les Falleres Majors Infantils li van regalar a l'alcaldessa una il·lustració meua. A la foto, amb ella i la Cort.",cas:"Las Falleras Mayores Infantiles le regalaron a la alcaldesa una ilustración mía. En la foto, con ella y la Corte."}},
  {d:{val:"Març 2026",cas:"Marzo 2026"},img:"assets/hitos/entrega-ajuntament.webp",reel:"DWJZ2FXCT_g",v:"36,3k",
   t:{val:"L'encàrrec de l'alcaldessa",cas:"El encargo de la alcaldesa"},
-  p:{val:"L'alcaldessa de València li encarrega les il·lustracions de les Corts d'Honor i les Falleres Majors 2026. Les entrega en persona a l'Ajuntament.",cas:"La alcaldesa de Valencia le encarga las ilustraciones de las Cortes de Honor y las Falleras Mayores 2026. Las entrega en persona en el Ayuntamiento."}}
+  p:{val:"L'alcaldessa de València em va encarregar les il·lustracions de les Corts d'Honor i les Falleres Majors 2026, i les vaig entregar en persona a l'Ajuntament.",cas:"La alcaldesa de Valencia me encargó las ilustraciones de las Cortes de Honor y las Falleras Mayores 2026, y las entregué en persona en el Ayuntamiento."}}
 ];
 
 const RV = "assets/revistes/";
@@ -1644,27 +1710,31 @@ const projects = [
  {id:"fallera",name:"La Fallera",kind:{val:"Redisseny d'identitat",cas:"Rediseño de identidad"},
   p:{val:"Una adaptació moderna de la icona de l'arròs de tota la vida: síntesi de la fallera protagonista i un lleuger retoc en la tipografia original.",cas:"Una adaptación moderna del icono del arroz de toda la vida: síntesis de la fallera protagonista y un ligero retoque en la tipografía original."},
   li:{val:["Logotip i icona","Paleta i tipografia","Packaging i aplicacions"],cas:["Logotipo e icono","Paleta y tipografía","Packaging y aplicaciones"]},
-  imgs:["la-fallera/p10","la-fallera/p34","la-fallera/p13","la-fallera/p36","la-fallera/p37","la-fallera/p39","la-fallera/p40","la-fallera/p42"].map(s=>P+s+".webp")},
+  thumb:"assets/proyectos/nou/fallera-logo.webp", reel:"",
+  imgs:["assets/proyectos/nou/fallera-logo.webp",...["la-fallera/p34","la-fallera/p36","la-fallera/p39","la-fallera/p40","la-fallera/p42"].map(s=>P+s+".webp")]},
  {id:"xata",name:"La Xata",kind:{val:"Creació de marca",cas:"Creación de marca"},
   p:{val:"Marca de productes de xufa amb personatge protagonista i una submarca, El Xato, per als fartons. La Xata convida a refrescar-se i el Xato, a compartir.",cas:"Marca de productos de chufa con personaje protagonista y una submarca, El Xato, para los fartons. La Xata invita a refrescarse y el Xato, a compartir."},
   li:{val:["Logotip i submarca","Personatges il·lustrats","Packaging, xarxes i web"],cas:["Logotipo y submarca","Personajes ilustrados","Packaging, redes y web"]},
-  imgs:["la-xata/p42","la-xata/p13","la-xata/p25","la-xata/p38","la-xata/p39","la-xata/p40","la-xata/p41","la-xata/p53"].map(s=>P+s+".webp")},
+  thumb:"assets/proyectos/nou/xata-portada.webp",
+  imgs:["assets/proyectos/nou/xata-logo.webp","assets/proyectos/nou/xata-personatges.webp",...["la-xata/p38","la-xata/p39","la-xata/p40","la-xata/p41","la-xata/p37","la-xata/p53"].map(s=>P+s+".webp")]},
  {id:"fressca",name:"A la Fressca",kind:{val:"Identitat per a un beach club",cas:"Identidad para un beach club"},
   p:{val:"El nom ve de l'expressió «prendre la fresca». Recursos gràfics i colors inspirats en la taulelleria valenciana i el Mediterrani.",cas:"El nombre viene de la expresión «tomar la fresca». Recursos gráficos y colores inspirados en la azulejería valenciana y el Mediterráneo."},
   li:{val:["Naming i logotip","Patrons de taulells","Aplicacions"],cas:["Naming y logotipo","Patrones de azulejos","Aplicaciones"]},
-  imgs:["a-la-fressca/p33","a-la-fressca/p20","a-la-fressca/p27","a-la-fressca/p36","a-la-fressca/p39","a-la-fressca/p40","a-la-fressca/p42","a-la-fressca/p43"].map(s=>P+s+".webp")},
+  thumb:"assets/proyectos/nou/fressca-logo.webp",
+  taulells:Array.from({length:10},(_,k)=>"assets/proyectos/nou/taulell-"+(k+1)+".webp"),
+  imgs:["fressca-logo","fressca-cartell","fressca-tovallons","fressca-plats","fressca-carta","fressca-posagots"].map(s=>"assets/proyectos/nou/"+s+".webp")},
  {id:"esmorzaret",name:"Esmorçaret",kind:{val:"Packaging",cas:"Packaging"},
   p:{val:"Bossa de picaeta amb finestra transparent. Paleta inspirada en la ceràmica valenciana i il·lustracions fetes a mà i vectoritzades.",cas:"Bolsa de picaeta con ventana transparente. Paleta inspirada en la cerámica valenciana e ilustraciones hechas a mano y vectorizadas."},
   li:{val:["Envàs pillow bag","Il·lustració a mà"],cas:["Envase pillow bag","Ilustración a mano"]},
-  imgs:["anverso","reverso2","promo1","promo2"].map(s=>"assets/packaging/esmorzaret-"+s+".webp")},
+  imgs:[...["anverso","reverso2","promo1","promo2"].map(s=>"assets/packaging/esmorzaret-"+s+".webp"),"assets/proyectos/nou/esmorzaret-cartell-1.webp","assets/proyectos/nou/esmorzaret-cartell-2.webp"]},
  {id:"visca",name:"Visca!",kind:{val:"Revista fallera",cas:"Revista fallera"},
   p:{val:"Disseny editorial en tres seccions i un especial dedicat a la DANA. Titulars en tipografia Metxa per a reforçar la identitat valenciana.",cas:"Diseño editorial en tres secciones y un especial dedicado a la DANA. Titulares en tipografía Metxa para reforzar la identidad valenciana."},
   li:{val:["Maquetació","Portada i especial DANA"],cas:["Maquetación","Portada y especial DANA"]},
-  imgs:[1,2,3,4].map(n=>"assets/grafic/visca/visca-"+n+".webp")},
+  imgs:["assets/proyectos/nou/visca-mockup.webp"]},
  {id:"jubileu",name:{val:"Jubileu 2025",cas:"Jubileo 2025"},kind:{val:"Samarreta per a pelegrins",cas:"Camiseta para peregrinos"},
   p:{val:"Propostes per al concurs de la samarreta del Jubileu dels Joves, unificades després en una samarreta de record: Sant Peregrí i la Cúpula de l'Esperança.",cas:"Propuestas para el concurso de la camiseta del Jubileo de los Jóvenes, unificadas después en una camiseta de recuerdo: Santi peregrino y la Cúpula de la Esperanza."},
   li:{val:["Il·lustració","Disseny tèxtil"],cas:["Ilustración","Diseño textil"]},
-  imgs:[3,1,2].map(n=>"assets/grafic/jubileu/camiseta-"+n+".webp")},
+  imgs:["jubileu-horitzontal","jubileu-icona-1","jubileu-icona-2"].map(s=>"assets/proyectos/nou/"+s+".webp")},
  {id:"passaport",name:"Passaport Faller",kind:{val:"App mòbil",cas:"App móvil"},
   p:{val:"Aplicació dissenyada i prototipada en Figma, amb variables i propietats, mode dia i nit i canvi d'idioma.",cas:"Aplicación diseñada y prototipada en Figma, con variables y propiedades, modo día y noche y cambio de idioma."},
   li:{val:["UI/UX","Prototip en Figma"],cas:["UI/UX","Prototipo en Figma"]},
@@ -1679,7 +1749,7 @@ function applyLang(){
   document.documentElement.lang = lang === "val" ? "ca-valencia" : "es";
   $$("[data-i18n]").forEach(el => { const k = el.dataset.i18n, v = (tactil && typeof T[lang][k + ".tac"] === "string") ? T[lang][k + ".tac"] : T[lang][k]; if (typeof v === "string") el.innerHTML = v; });
   $$("#lang b").forEach(b => b.classList.toggle("on", b.dataset.l === lang));
-  renderNinots(); window.__indNote && window.__indNote(); renderQuiosc(); renderFites(); renderCalendari(); window.__ofrena && window.__ofrena(); renderF26(); renderProjects(); renderKinds(); window.__compte && window.__compte();
+  renderNinots(); window.__indNote && window.__indNote(); window.__capella && window.__capella(); renderQuiosc(); renderFites(); renderCalendari(); window.__ofrena && window.__ofrena(); renderF26(); renderProjects(); renderKinds(); window.__compte && window.__compte();
   $("#formOut").hidden = true;
 }
 $("#lang").addEventListener("click", () => { lang = lang === "val" ? "cas" : "val"; store.set("cebri-lang", lang); applyLang(); });
@@ -1796,6 +1866,7 @@ function renderFites(){
     return `<li class="retall${n >= 1e6 ? " gros" : ""}" style="--r:${rots[i % rots.length]}deg;--rn:${-rots[(i + 3) % rots.length] * 1.6}deg">
       <i class="xinxeta c${(i % 3) + 1}"></i>
       <a class="foto" href="${link || "#"}" aria-label="${L(f.t)}"><img src="${f.img}" alt="" loading="lazy">${f.reel ? `<span class="play">${PLAY}</span>` : ""}</a>
+      ${f.img2 ? `<span class="foto2"><img src="${f.img2}" alt="" loading="lazy"></span>` : ""}
       <div class="peu"><h4>${L(f.t)}</h4><small>${L(f.d)}</small></div>
       ${f.v ? `<p class="apunt"><b>${f.v}</b><span>${lbl}</span></p>` : ""}
     </li>`;
@@ -1824,14 +1895,15 @@ const figmaEmbed = u => { try { const x = new URL(u); if (!/figma\.com$/.test(x.
 
 /* ================= PROJECTES ================= */
 let current = "f26";
-const shelf = () => [{ id: "f26", name: { val: "Falles 2026", cas: "Fallas 2026" }, thumb: "assets/grafic/falles-2026/mupi-1.webp" }, ...projects];
+const shelf = () => [{ id: "f26", name: { val: "Falles 2026", cas: "Fallas 2026" }, thumb: "assets/grafic/falles-2026/cartells/principal.webp" }, ...projects];
 function renderProjects(){
   $("#tabs").innerHTML = shelf().map((p, k) => `<button class="tab maqueta" role="tab" id="tab-${p.id}" aria-controls="pan-${p.id}" aria-selected="${p.id === current}" tabindex="${p.id === current ? 0 : -1}" data-id="${p.id}" style="--r:${[-2, 1.5, -1, 2, -1.5, 1, -2.5, 1.8][k % 8]}deg"><span class="caixa"><img src="${p.thumb || p.imgs[0]}" alt="" loading="lazy"></span><span class="etiqueta">${L(p.name)}</span></button>`).join("");
   $("#panels").innerHTML = projects.map(p => `
     <div class="panel" role="tabpanel" id="pan-${p.id}" aria-labelledby="tab-${p.id}" ${p.id === current ? "" : "hidden"}>
-      <div class="meta"><h3>${L(p.name)}</h3><p class="kind">${L(p.kind)}</p><p>${L(p.p)}</p><ul>${L(p.li).map(x => `<li>${x}</li>`).join("")}</ul>${["fressca", "esmorzaret"].includes(p.id) ? `<div class="taulells" aria-hidden="true" style="--c2:${p.id === "fressca" ? "#3c5aa8" : "#a38a62"}">${Array.from({ length: 8 }, (_, k) => `<i style="--k:${k}"></i>`).join("")}</div>` : ""}</div>
+      <div class="meta"><h3>${L(p.name)}</h3><p class="kind">${L(p.kind)}</p><p>${L(p.p)}</p><ul>${L(p.li).map(x => `<li>${x}</li>`).join("")}</ul>${p.reel ? `<a class="reel-link" href="${p.reel}" target="_blank" rel="noopener">${lang === "val" ? "Mira el reel de com el vaig fer ↗" : "Mira el reel de cómo lo hice ↗"}</a>` : ""}</div>
       ${p.id === "passaport" && FIGMA_PROTO ? `<div class="proto"><div class="proto-mobil"><div class="proto-pantalla" id="protoPantalla"><button class="btn" type="button" id="protoObri">${lang === "val" ? "Prova l'app" : "Prueba la app"}</button><small>${lang === "val" ? "Prototip interactiu de Figma: toca i navega com si fora el teu mòbil." : "Prototipo interactivo de Figma: toca y navega como si fuera tu móvil."}</small></div></div><a class="proto-obri" href="${FIGMA_PROTO.replace("&show-proto-sidebar=1", "")}" target="_blank" rel="noopener">${lang === "val" ? "Obri el prototip a Figma ↗" : "Abre el prototipo en Figma ↗"}</a></div>` : ""}
       <div class="cas-galeria"><button class="gran" data-lb="p-${p.id}" data-i="0" aria-label="${L(p.name)} 1"><img src="${p.imgs[0]}" alt="${L(p.name)}" loading="lazy"></button>
+        ${p.taulells ? `<div class="taulells-reals" aria-label="${lang === "val" ? "Els taulells" : "Los azulejos"}">${p.taulells.map((t, k) => `<img src="${t}" alt="" loading="lazy" style="--k:${k}">`).join("")}</div>` : ""}
         <div class="resta">${p.imgs.slice(1).map((s, i) => `<button data-lb="p-${p.id}" data-i="${i + 1}" aria-label="${L(p.name)} ${i + 2}"><img src="${s}" alt="${L(p.name)}, ${i + 2}" loading="lazy"></button>`).join("")}</div></div>
     </div>`).join("");
 }
@@ -1948,8 +2020,8 @@ $("#fData").addEventListener("change", e => {
   const okMail = v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
   const valida = i => {
     if (i === 0) { if (!$("#fNom").value.trim()) return [$("#fNom"), lang === "val" ? "Escriu el teu nom." : "Escribe tu nombre."];
-      if (!okMail($("#fMail").value.trim())) return [$("#fMail"), lang === "val" ? "Revisa el correu: així Miguel no et podrà contestar." : "Revisa el correo: así Miguel no te podrá contestar."]; }
-    if (i === 2 && $("#fMsg").value.trim().length < 5) return [$("#fMsg"), lang === "val" ? "Conta-li un poc més la idea." : "Cuéntale un poco más la idea."];
+      if (!okMail($("#fMail").value.trim())) return [$("#fMail"), lang === "val" ? "Revisa el correu: així no et podré contestar." : "Revisa el correo: así no te podré contestar."]; }
+    if (i === 2 && $("#fMsg").value.trim().length < 5) return [$("#fMsg"), lang === "val" ? "Conta'm un poc més la idea." : "Cuéntame un poco más la idea."];
     return null;
   };
   const resum = () => { const fd = new FormData(form), dt = fd.get("data"), L2 = lang === "val" ? ["Nom", "Correu", "Encàrrec", "Per a", "Pressupost", "Idea"] : ["Nombre", "Correo", "Encargo", "Para", "Presupuesto", "Idea"];
@@ -2450,6 +2522,114 @@ $$("#board .sheet").forEach(sh => sh.addEventListener("animationend", () => sh.c
   b.addEventListener("click", () => { obert = true; aplica(); so.vibra("petit"); });
   new MutationObserver(aplica).observe(g, { childList: true, subtree: true, attributes: true, attributeFilter: ["hidden"] });
   mq.addEventListener("change", aplica); aplica();
+})();
+
+/* l'animatic: només es mostra el vídeo quan el fitxer existeix */
+(() => { const f = $("#animatic"), v = f && f.querySelector("video"); if (!v) return;
+  v.addEventListener("loadedmetadata", () => f.classList.add("te-video")); v.addEventListener("error", () => f.classList.remove("te-video")); v.preload = "metadata"; })();
+
+
+/* ================= LA CAPELLA ================= */
+(() => {
+  const PEC = [
+    { src: "assets/vector/mare-deu-raigs.webp", t: { val: "La Geperudeta", cas: "La Geperudeta" } },
+    { src: "assets/vector/mare-deu-micalet.webp", t: { val: "La Mare de Déu i el Micalet", cas: "La Mare de Déu y el Micalet" } },
+    { src: "assets/ilustra/serie-11-maredeueta.webp", t: { val: "La Mare de Déu, a tinta", cas: "La Mare de Déu, a tinta" } },
+    { src: "assets/ilustra/dana-mareta.webp", t: { val: "«Mareta, ampara els pobles»", cas: "«Mareta, ampara els pobles»" } },
+    { src: "assets/vector/mare-deu-sant-vicent.webp", t: { val: "La Mare de Déu i Sant Vicent", cas: "La Mare de Déu y San Vicente" } },
+    { src: "assets/proyectos/nou/jubileu-icona-2.webp", t: { val: "Pelegrins d'esperança, Jubileu 2025", cas: "Peregrinos de esperanza, Jubileo 2025" } }
+  ];
+  let i = 0;
+  const img = $("#capImg"), cap = $("#capCap"), tria = $("#capTria"), fig = $("#capFig");
+  const posa = (k, anim) => { i = k; const p = PEC[k];
+    const fes = () => { img.src = p.src; img.alt = L(p.t); cap.textContent = L(p.t); fig.classList.remove("canvia"); };
+    if (anim && !reduce) { fig.classList.add("canvia"); setTimeout(fes, 280); } else fes();
+    $$("button", tria).forEach((b, n) => b.setAttribute("aria-pressed", n === k)); };
+  const render = () => { tria.innerHTML = PEC.map((p, k) => `<button type="button" aria-pressed="${k === i}" aria-label="${L(p.t)}"><img src="${p.src}" alt="" loading="lazy"></button>`).join(""); posa(i, false); };
+  tria.addEventListener("click", e => { const b = e.target.closest("button"); if (!b) return; const k = [...tria.children].indexOf(b); if (k !== i) { posa(k, true); window.__so && window.__so.vibra("petit"); } });
+  $("#capBtn").addEventListener("click", () => posa((i + 1) % PEC.length, true));
+  // espelmes: cada visita en pot encendre; s'apaguen soles a poc a poc
+  const esp = $$(".altar-espelmes i");
+  let enceses = 2; const pinta = () => esp.forEach((e, n) => e.classList.toggle("on", n < enceses));
+  pinta();
+  $("#espelma").addEventListener("click", () => { enceses = Math.min(esp.length, enceses + 1); pinta(); window.__so && window.__so.vibra("petit"); });
+  window.__capella = render; render();
+})();
+
+
+/* ================= LA CREMÀ: foc, cendra i l'esquelet de fusta ================= */
+(() => {
+  const fig = $("#burn"), cv = $("#burnCv"), img = $("#peuImg"); if (!fig || !cv || reduce) return;
+  const W = 420, H = Math.round(W * 1154 / 813); cv.width = W; cv.height = H;
+  const cx = cv.getContext("2d", { willReadFrequently: true });
+  let src = null, esq = null, out = cx.createImageData(W, H), noise = new Float32Array(W * H), started = false, t0 = 0, raf = 0, cendra = [];
+  // soroll suau per a que el front del foc siga irregular
+  (() => { const G = 18, gw = Math.ceil(W / G) + 2, gh = Math.ceil(H / G) + 2, g = new Float32Array(gw * gh).map(() => Math.random());
+    const g2 = new Float32Array(gw * gh).map(() => Math.random());
+    for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
+      const fx = x / G, fy = y / G, ix = fx | 0, iy = fy | 0, ux = fx - ix, uy = fy - iy, sx = ux * ux * (3 - 2 * ux), sy = uy * uy * (3 - 2 * uy);
+      const a = g[iy * gw + ix], b = g[iy * gw + ix + 1], c = g[(iy + 1) * gw + ix], d = g[(iy + 1) * gw + ix + 1];
+      const v = a + (b - a) * sx + (c - a) * sy + (a - b - c + d) * sx * sy;
+      const fx2 = x / 6, fy2 = y / 6; const v2 = g2[((fy2 | 0) % gh) * gw + ((fx2 | 0) % gw)];
+      noise[y * W + x] = v * .8 + v2 * .2; } })();
+  // l'esquelet de fusta que queda després de la cremà
+  function pintaEsquelet() {
+    const c = document.createElement("canvas"); c.width = W; c.height = H; const k = c.getContext("2d");
+    const gr = k.createRadialGradient(W / 2, H * .92, 10, W / 2, H * .7, H * .8); gr.addColorStop(0, "#5a2a12"); gr.addColorStop(.35, "#2a1a14"); gr.addColorStop(1, "#16110f");
+    k.fillStyle = gr; k.fillRect(0, 0, W, H);
+    const fusta = (x1, y1, x2, y2, w) => { const j = () => (Math.random() - .5) * 2.2;
+      k.strokeStyle = "#3b2716"; k.lineWidth = w + 3; k.lineCap = "round"; k.beginPath(); k.moveTo(x1 + j(), y1 + j()); k.lineTo(x2 + j(), y2 + j()); k.stroke();
+      k.strokeStyle = "#7a5233"; k.lineWidth = w; k.beginPath(); k.moveTo(x1, y1); k.lineTo(x2, y2); k.stroke();
+      k.strokeStyle = "rgba(255,150,60,.55)"; k.lineWidth = 1.2; k.beginPath(); k.moveTo(x1 + w * .3, y1); k.lineTo(x2 + w * .3, y2); k.stroke(); };
+    const B = H * .9, T = H * .14, cxm = W / 2;
+    fusta(W * .12, B, W * .88, B, 10);                         // base
+    fusta(W * .2, B, W * .2, H * .5, 8); fusta(W * .8, B, W * .8, H * .5, 8);   // pals laterals
+    fusta(cxm, B, cxm, T, 11);                                 // pal central
+    fusta(W * .2, H * .5, cxm, T + H * .06, 7); fusta(W * .8, H * .5, cxm, T + H * .06, 7);
+    for (let i = 0; i < 4; i++) { const y = B - (B - H * .5) * (i + 1) / 5; fusta(W * .2, y, W * .8, y, 5); }
+    fusta(W * .2, B, W * .8, H * .55, 4); fusta(W * .8, B, W * .2, H * .55, 4);
+    fusta(W * .33, H * .5, cxm, H * .3, 4); fusta(W * .67, H * .5, cxm, H * .3, 4); fusta(W * .3, H * .38, W * .7, H * .38, 5);
+    esq = k.getImageData(0, 0, W, H).data;
+  }
+  function carrega() { if (src) return true; if (!img.complete || !img.naturalWidth) return false;
+    cx.drawImage(img, 0, 0, W, H); src = cx.getImageData(0, 0, W, H).data; pintaEsquelet(); fig.classList.add("cv"); pinta(-.2); return true; }
+  function pinta(L) {
+    const o = out.data;
+    for (let y = 0; y < H; y++) { const h = 1 - y / H;
+      for (let x = 0; x < W; x++) { const i = y * W + x, p = i * 4, d = h + (noise[i] - .5) * .22 - L;
+        if (d < 0) { // cremat: queda l'esquelet, amb brases que bateguen prop del front
+          const br = d > -.05 ? (1 + d / .05) : 0;
+          o[p] = Math.min(255, esq[p] + br * 200); o[p + 1] = Math.min(255, esq[p + 1] + br * 70); o[p + 2] = esq[p + 2]; o[p + 3] = 255; }
+        else if (d < .028) { const k = d / .028; // la vora: carbó i una línia de foc
+          const r = 255, g = 120 + 120 * (1 - k), b = 40 * (1 - k);
+          const m = k < .45 ? 1 : 1 - (k - .45) / .55;
+          o[p] = r * m + 30 * (1 - m); o[p + 1] = g * m + 22 * (1 - m); o[p + 2] = b * m + 18 * (1 - m); o[p + 3] = 255; }
+        else if (d < .2) { const k = 1 - (d - .028) / .172, s0 = src[p], s1 = src[p + 1], s2 = src[p + 2]; // calor: el paper es fa taronja i torrat
+          const a = k * k * .85;
+          o[p] = s0 * (1 - a) + (s0 * .55 + 120) * a; o[p + 1] = s1 * (1 - a) + (s1 * .35 + 45) * a; o[p + 2] = s2 * (1 - a) + s2 * .15 * a; o[p + 3] = 255; }
+        else { o[p] = src[p]; o[p + 1] = src[p + 1]; o[p + 2] = src[p + 2]; o[p + 3] = 255; } } }
+    cx.putImageData(out, 0, 0);
+  }
+  const DUR = 7500;
+  function tick(now) {
+    raf = 0; const t = Math.min(1, (now - t0) / DUR), e = t < .5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2;
+    const L = -.15 + e * 1.35; pinta(L);
+    // cendra que es desprén del front i puja
+    if (t < 1) for (let n = 0; n < 7; n++) { const x = Math.random() * W, y = H * (1 - Math.max(0, Math.min(1, L))) + (Math.random() - .5) * 24;
+      cendra.push({ x, y, vx: (Math.random() - .5) * .6, vy: -.6 - Math.random() * 1.4, l: 0, m: 60 + Math.random() * 60, s: 1 + Math.random() * 2.2, f: Math.random() < .35 }); }
+    else if (Math.random() < .25) cendra.push({ x: W * (.2 + Math.random() * .6), y: H * .9, vx: (Math.random() - .5) * .4, vy: -.5 - Math.random(), l: 0, m: 80, s: 1.2, f: true });
+    cendra = cendra.filter(c => ++c.l < c.m);
+    for (const c of cendra) { c.x += c.vx + Math.sin((c.l + c.y) * .08) * .3; c.y += c.vy; const a = 1 - c.l / c.m;
+      cx.fillStyle = c.f ? `rgba(255,${150 + (a * 80) | 0},70,${a})` : `rgba(160,152,142,${a * .9})`;
+      cx.fillRect(c.x, c.y, c.s, c.s * (c.f ? 1 : .6)); }
+    if (t < 1 || cendra.length) raf = requestAnimationFrame(tick); else idle();
+  }
+  // acabada: les brases de l'esquelet bateguen de tant en tant
+  let idleT = 0; function idle() { clearInterval(idleT); idleT = setInterval(() => { if (!document.hidden && fig.getBoundingClientRect().top < innerHeight) { cendra.push({ x: W * (.2 + Math.random() * .6), y: H * (.6 + Math.random() * .3), vx: 0, vy: -.6, l: 0, m: 50, s: 1.4, f: true }); if (!raf) { t0 = performance.now() - DUR; raf = requestAnimationFrame(tick); } } }, 700); }
+  const crema = () => { if (!carrega()) { img.addEventListener("load", crema, { once: true }); return; } clearInterval(idleT); cendra = []; t0 = performance.now(); if (!raf) raf = requestAnimationFrame(tick); window.__so && window.__so.vibra && window.__so.vibra("gran"); };
+  new IntersectionObserver(([e]) => { if (e.isIntersecting && !started) { started = true; setTimeout(crema, 700); } }, { threshold: .55 }).observe(fig);
+  fig.addEventListener("click", () => { if (raf) return; started = true; crema(); });
+  if (img.complete) carrega(); else img.addEventListener("load", carrega, { once: true });
 })();
 
 /* ================= LOADER: LA TRACA ================= */

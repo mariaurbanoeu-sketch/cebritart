@@ -136,12 +136,16 @@ export function grua(host, opts = {}) {
   const tex = new THREE.TextureLoader().load(opts.logo || 'assets/brand/logo-cebritart.webp', () => draw());
   tex.colorSpace = THREE.SRGBColorSpace; tex.anisotropy = 4;
   const zmesh = new THREE.Mesh(new THREE.PlaneGeometry(ZW, ZH), new THREE.MeshBasicMaterial({ map: tex, transparent: true, side: THREE.DoubleSide, alphaTest: .02 }));
-  zmesh.position.y = zy - ZH / 2 - .35; zebra.add(zmesh);
-  zebra.add(lines([[[0, -.72, 0], [-ZW * .28, zy - .35, 0]], [[0, -.72, 0], [ZW * .28, zy - .35, 0]]], mCable, false));
+  const ZT = zy - .12; zmesh.position.y = ZT - ZH / 2; zebra.add(zmesh);
+  // les eslingues baixen fins a tocar el dibuix (la crinera), no el buit transparent de la imatge
+  const esL = [(.36 - .5) * ZW, ZT - .06 * ZH, .01], esR = [(.66 - .5) * ZW, ZT - .05 * ZH, .01];
+  zebra.add(lines([[[0, -.72, 0], esL], [[0, -.72, 0], esR]], mCable, false));
+  // dos nusets on l'eslinga agafa el logo
+  for (const [x, y] of [esL, esR]) { const n = new THREE.Mesh(new THREE.CircleGeometry(.07, 12), new THREE.MeshBasicMaterial({ color: C.ink })); n.position.set(x, y, .02); zebra.add(n); toonLines.push({ material: n.material }); }
 
 
   // ---------- carret de bunyols ----------
-  const cart = new THREE.Group(); scene.add(cart);
+  const cart = new THREE.Group(); cart.visible = false; // el carret de bunyols ja no s'hi mostra
   solid(new THREE.BoxGeometry(2.6, 1.05, 1.25), fPaper, cart, [0, 1.02, 0]);
   solid(new THREE.BoxGeometry(3.0, .12, 1.45), fBeix, cart, [0, 1.6, 0]);
   // tauletes del frontal
@@ -202,7 +206,7 @@ export function grua(host, opts = {}) {
     F.update(dt); mascUpdate(dt); if (nit) city.userData.llum(F.flash);
     // el carret: les bombetes parpellegen i el bunyol fa vapor
     if (nit) bulbMat.color.setRGB(1, .9 - Math.sin(st.t * 7) * .04, .62);
-    if (nit && Math.random() < .35) emit(-.75 + (Math.random() - .5) * .4 + cart.position.x, 2.1 + cart.position.y, cart.position.z + (Math.random() - .5) * .3, (Math.random() - .5) * .25, .7, 0, nit ? [.32, .3, .3] : [0, 0, 0], 1.8, .9, 5);
+    if (cart.visible && nit && Math.random() < .35) emit(-.75 + (Math.random() - .5) * .4 + cart.position.x, 2.1 + cart.position.y, cart.position.z + (Math.random() - .5) * .3, (Math.random() - .5) * .25, .7, 0, nit ? [.32, .3, .3] : [0, 0, 0], 1.8, .9, 5);
   }
 
 
@@ -360,14 +364,14 @@ export function grua(host, opts = {}) {
     v2.set(((e.clientX - r.left) / r.width) * 2 - 1, -((e.clientY - r.top) / r.height) * 2 + 1);
     ray.setFromCamera(v2, camera);
     if (ray.intersectObject(zmesh).length && intro >= 1 && lift === 0) { lift = 1; opts.onLift && opts.onLift(); run(); return; }
-    if (ray.intersectObject(cart, true).length) { const w = new THREE.Vector3(.55, 2, 0); cart.localToWorld(w);
+    if (cart.visible && ray.intersectObject(cart, true).length) { const w = new THREE.Vector3(.55, 2, 0); cart.localToWorld(w);
       for (let i = 0; i < 40; i++) { const [a, b, d] = R3(); emit(w.x, w.y, w.z, a * 2, Math.abs(b) * 3 + 1, d * 2, nit ? PAL.or : [.55, .45, .25], .9, .28, 1); } sfx('paper'); try { window.__so && window.__so.vibra('bombetes'); } catch (_) {} run(); return; }
     if (nit && !reduce) { const r2 = zone.getBoundingClientRect(); if (e.clientY - r2.top < r2.height * .6) api.foc(e.clientX, e.clientY); }
   });
   zone.addEventListener('pointermove', (e) => {
     if (e.pointerType !== 'mouse') return; const r = renderer.domElement.getBoundingClientRect();
     v2.set(((e.clientX - r.left) / r.width) * 2 - 1, -((e.clientY - r.top) / r.height) * 2 + 1); ray.setFromCamera(v2, camera);
-    zone.classList.toggle('sobre-zebra', ray.intersectObject(zmesh).length > 0 || ray.intersectObject(cart, true).length > 0);
+    zone.classList.toggle('sobre-zebra', ray.intersectObject(zmesh).length > 0);
   });
 
   layout(); run();

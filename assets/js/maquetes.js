@@ -22,7 +22,7 @@ export function maquetes(host, items, opts = {}) {
     const e = new THREE.EdgesGeometry(geo, 20), p = e.attributes.position.array, s = []; for (let i = 0; i < p.length; i += 6) s.push([[p[i], p[i + 1], p[i + 2]], [p[i + 3], p[i + 4], p[i + 5]]]);
     m.add(lines(s, mInk)); parent.add(m); return m; }
 
-  const SW = 2.3, SH = 2.6, D = 1.1; // amplada i alçada de cada buc
+  const SW = 2.3, SH = 2.25, D = 1.0; // amplada i alçada de cada buc
   const rack = new THREE.Group(); scene.add(rack);
   const loader = new THREE.TextureLoader();
   const boards = []; let cols = 4, current = opts.current;
@@ -34,9 +34,8 @@ export function maquetes(host, items, opts = {}) {
     solid(new THREE.BoxGeometry(.14, H + .3, D), fWoodD, rack, [-W / 2 - .07, H / 2 - .15, 0]);
     solid(new THREE.BoxGeometry(.14, H + .3, D), fWoodD, rack, [W / 2 + .07, H / 2 - .15, 0]);
     for (let r = 0; r <= rows; r++) solid(new THREE.BoxGeometry(W, .12, D), fWood, rack, [0, r * SH - .06, 0]);
-    const back = []; for (let r = 0; r < rows; r++) for (let k = 1; k < 6; k++) { const y = r * SH + k * SH / 6; back.push([[-W / 2, y, -D / 2], [W / 2, y, -D / 2]]); }
-    for (let c = 1; c < cols; c++) back.push([[-W / 2 + c * SW, 0, -D / 2], [-W / 2 + c * SW, H, -D / 2]]);
-    rack.add(lines(back, mSoft));
+    // separadors verticals entre buc i buc (sense línies de fons)
+    for (let c = 1; c < cols; c++) solid(new THREE.BoxGeometry(.08, H, D * .9), fWoodD, rack, [-W / 2 + c * SW, H / 2, -.02]);
     items.forEach((it, i) => {
       const r = rows - 1 - Math.floor(i / cols), c = i % cols;
       const slot = new THREE.Group(); slot.position.set(-W / 2 + SW * (c + .5), r * SH, .05); rack.add(slot);
@@ -52,7 +51,7 @@ export function maquetes(host, items, opts = {}) {
       const b = { it, slot, holder, card, img, paper, edge, peu, tilt, lift: 0, hover: 0, w: 1, h: 1 };
       boards.push(b);
       const set = (w, h) => { // ajusta la maqueta a la proporció real de la imatge
-        const maxW = SW * .74, maxH = SH * .72, k = Math.min(maxW / w, maxH / h); b.w = w * k; b.h = h * k;
+        const maxW = SW * .8, maxH = SH * .84, k = Math.min(maxW / w, maxH / h); b.w = w * k; b.h = h * k;
         img.scale.set(b.w, b.h, 1); paper.scale.set(b.w + .12, b.h + .12, 1); edge.scale.set(b.w + .12, b.h + .12, 1);
         card.position.y = b.h / 2 + .12; peu.scale.set(1, b.h, 1);
       };
@@ -69,8 +68,8 @@ export function maquetes(host, items, opts = {}) {
     if (nc !== cols || !boards.length) { cols = nc; dims = build(); }
     renderer.setSize(w, h, false); renderer.domElement.style.width = w + 'px'; renderer.domElement.style.height = h + 'px';
     camera.aspect = w / h;
-    const fitH = (dims.H + .8) / 2 / Math.tan(THREE.MathUtils.degToRad(camera.fov / 2));
-    const fitW = (dims.W + 1) / 2 / Math.tan(THREE.MathUtils.degToRad(camera.fov / 2)) / camera.aspect;
+    const fitH = (dims.H + .5) / 2 / Math.tan(THREE.MathUtils.degToRad(camera.fov / 2));
+    const fitW = (dims.W + .6) / 2 / Math.tan(THREE.MathUtils.degToRad(camera.fov / 2)) / camera.aspect;
     camera.position.set(0, .6, Math.max(fitH, fitW) + D); camera.lookAt(0, 0, 0); camera.updateProjectionMatrix();
     for (const m of mats) m.resolution.set(w, h); dirty();
   }
