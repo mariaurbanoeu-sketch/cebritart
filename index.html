@@ -186,8 +186,9 @@ section{padding:clamp(5rem,11vw,9rem) 0;position:relative}
 .chip[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
 .chip:hover{background:rgba(173,194,216,.25)}
 .chip[aria-pressed="true"]:hover{background:var(--ink)}
-.ninots{columns:4 200px;column-gap:clamp(1rem,2vw,2rem)}
-.ninot{break-inside:avoid;margin:0 0 clamp(1.4rem,2.6vw,2.4rem);position:relative;display:block;width:100%;text-align:left}
+.ninots{display:flex;flex-wrap:wrap;align-items:flex-start;column-gap:clamp(1rem,2vw,2rem);row-gap:clamp(1.4rem,2.6vw,2.4rem)}
+.ninots .salt{flex-basis:100%;height:0;margin:0}
+.ninot{margin:0;position:relative;display:block;width:var(--w,calc(25% - 1.5rem));flex:0 0 auto;text-align:left}
 .ninot .frame{position:relative;background:#fff;padding:8px;box-shadow:0 1px 1px rgba(0,0,0,.06),0 10px 24px -14px rgba(120,95,50,.4);transform:rotate(var(--r,0deg));transition:transform .45s cubic-bezier(.3,1.5,.5,1), box-shadow .3s}
 .ninot .frame::before{display:none;content:"";position:absolute;z-index:1;top:-9px;left:50%;width:22px;height:30px;margin-left:-11px;border-radius:3px;background:linear-gradient(90deg,#a98a5c,#cfb184 45%,#a98a5c);box-shadow:0 2px 3px rgba(0,0,0,.2)}
 .ninot:hover .frame,.ninot:focus-visible .frame{transform:rotate(0) translateY(-6px);box-shadow:0 1px 1px rgba(0,0,0,.06),0 22px 36px -16px rgba(120,95,50,.45)}
@@ -195,7 +196,7 @@ section{padding:clamp(5rem,11vw,9rem) 0;position:relative}
 .ninot figcaption{margin-top:.7rem;font-family:var(--serif);font-size:1.15rem;line-height:1.25}
 .ninot figcaption small{display:block;font-family:var(--sans);font-size:.82rem;color:var(--ink-soft);margin-top:.15rem}
 .ninot[hidden]{display:none}
-@media (max-width:600px){.ninots{columns:2;column-gap:.9rem}.ninot .frame{padding:5px}.ninot figcaption{font-size:1rem}.ninot figcaption small{font-size:.75rem}}
+@media (max-width:600px){.ninots{column-gap:.9rem;row-gap:1.2rem}.ninot{width:var(--w,calc(50% - .45rem))}.ninot .frame{padding:5px}.ninot figcaption{font-size:1rem}.ninot figcaption small{font-size:.75rem}}
 
 /* ---------- fites ---------- */
 .fites{background-color:var(--beix-paper);color:var(--ink);background-image:url("assets/brand/textura-tile.jpg");background-blend-mode:multiply;background-size:900px}
@@ -1060,8 +1061,9 @@ html.sacseja-fort .nav{animation:sacseja .4s linear}
 .fornicula.canvia{opacity:.25;transform:scale(.98)}
 .fornicula .raigs{position:absolute;inset:-18% -24% 10%;z-index:-1;background:repeating-conic-gradient(from 0deg at 50% 45%,rgba(242,201,76,.32) 0 4deg,transparent 4deg 12deg);-webkit-mask-image:radial-gradient(closest-side at 50% 45%,#000 40%,transparent);mask-image:radial-gradient(closest-side at 50% 45%,#000 40%,transparent);animation:raigs 60s linear infinite}
 @keyframes raigs{to{rotate:360deg}}
-.fornicula-img{display:block;width:100%;aspect-ratio:3/4;border-radius:999px 999px 4px 4px;overflow:hidden;background:#fdfbf4;cursor:pointer}
-.fornicula-img img{width:100%;height:100%;object-fit:contain;background:#fdfbf4}
+.fornicula-img{display:block;width:100%;aspect-ratio:3/4;border-radius:999px 999px 4px 4px;overflow:hidden;background-color:#f6f1e6;background-image:url("assets/brand/textura-tile.jpg");background-size:900px;background-blend-mode:multiply;cursor:pointer;box-shadow:inset 0 0 30px rgba(120,90,40,.25)}
+.fornicula-img img{width:100%;height:100%;object-fit:contain;padding:8% 7% 5%;mix-blend-mode:multiply}
+.fornicula-img img.omple{object-fit:cover;padding:0;mix-blend-mode:normal}
 .fornicula figcaption{margin-top:.9rem;font-family:var(--serif);font-style:italic;font-size:1.15rem;color:#2f2414}
 .altar-espelmes{display:flex;align-items:flex-end;justify-content:center;gap:clamp(.6rem,1.6vw,1.2rem);padding-bottom:1.2rem}
 .altar-espelmes i{position:relative;width:16px;height:var(--h,90px);background:linear-gradient(90deg,#efe6d2,#fffaf0 40%,#e2d6bb);border-radius:3px 3px 2px 2px;box-shadow:0 10px 18px -10px rgba(0,0,0,.6)}
@@ -1072,8 +1074,8 @@ html.sacseja-fort .nav{animation:sacseja .4s linear}
 .altar-espelmes i.on{box-shadow:0 10px 18px -10px rgba(0,0,0,.6),0 -40px 60px -30px rgba(255,190,90,.55)}
 @keyframes flama{0%{transform:scale(1,1) rotate(-2deg)}50%{transform:scale(.92,1.08) rotate(2deg)}100%{transform:scale(1.04,.95) rotate(-1deg)}}
 .capella-tria{display:flex;flex-wrap:wrap;justify-content:center;gap:.8rem;margin:2.2rem auto 1.2rem}
-.capella-tria button{width:62px;aspect-ratio:3/4;border-radius:999px 999px 3px 3px;overflow:hidden;background:#fdfbf4;padding:3px;box-shadow:0 0 0 1px rgba(226,194,127,.5);opacity:.7;transition:opacity .2s,transform .25s}
-.capella-tria button img{width:100%;height:100%;object-fit:cover;border-radius:inherit}
+.capella-tria button{width:62px;aspect-ratio:3/4;border-radius:999px 999px 3px 3px;overflow:hidden;background:#f6f1e6;padding:3px;box-shadow:0 0 0 1px rgba(226,194,127,.5);opacity:.7;transition:opacity .2s,transform .25s}
+.capella-tria button img{width:100%;height:100%;object-fit:cover;border-radius:inherit;mix-blend-mode:multiply}
 .capella-tria button:hover,.capella-tria button[aria-pressed="true"]{opacity:1;transform:translateY(-4px);box-shadow:0 0 0 2px #e2c27f,0 10px 20px -10px rgba(255,200,120,.6)}
 .espelma-btn{margin:0 auto}
 @media (max-width:640px){.altar{grid-template-columns:minmax(0,1fr)}.altar-espelmes{display:none}.fornicula{margin:0 auto}}
@@ -1106,6 +1108,25 @@ html.sacseja-fort .nav{animation:sacseja .4s linear}
 @media (max-width:420px){.retall.solta.ampla{grid-column:span 2}}
 
 
+
+/* la cremà: el bomber */
+.bombers-cv{position:absolute!important;inset:0;width:100%!important;height:100%!important;z-index:4;pointer-events:none}
+.burn-pista{position:absolute;left:0;right:0;top:calc(100% + .9rem);font-family:var(--serif);font-style:italic;font-size:1.02rem;line-height:1.35;text-align:center;color:var(--ink);pointer-events:none}
+.burn.apagant{touch-action:none}
+html.bombers #nib,html.bombers #ink{opacity:0!important;visibility:hidden}
+html.bombers .crema,html.bombers .crema *{cursor:none!important}
+.crema .burn{margin-bottom:3.6rem}
+
+/* capella 3D */
+.altar.amb-3d{display:block;position:relative}
+.capella3d{width:min(980px,100%);aspect-ratio:1.15;margin:0 auto;position:relative}
+.capella3d canvas{width:100%!important;height:100%!important;display:block}
+.altar.amb-3d .altar-espelmes{display:none}
+.altar.amb-3d .fornicula{width:auto;padding:0;margin:.4rem auto 0;background:none;box-shadow:none}
+.altar.amb-3d .fornicula-img{display:none}
+.altar.amb-3d .fornicula .raigs{display:none}
+.altar.amb-3d .fornicula figcaption{color:var(--ink);font-size:1.3rem}
+@media (max-width:640px){.capella3d{aspect-ratio:.95}}
 /* ===== VISCA! EN 3D ===== */
 .llibre3d{--pw:min(36vw,540px,calc((100svh - 13rem) / 1.4143));grid-column:1/-1;margin:.5rem 0 1rem;user-select:none;-webkit-user-select:none}
 .ll-escena{display:flex;justify-content:center;padding:clamp(1rem,3vw,2.4rem) 0 clamp(1.6rem,3vw,2.6rem);perspective:2400px;overflow:hidden}
@@ -1383,7 +1404,7 @@ html.ll-zoom-obert{overflow:hidden}
     </div>
     <div class="anims">
       <figure class="anim a1"><div class="screen"><video src="assets/animacio/caminata.mp4" muted loop playsinline preload="none" data-auto width="1280" height="720"></video></div><figcaption data-i18n="an.1">Passeig per l'Albufera<small>Cicle de caminada, 17 s</small></figcaption></figure>
-      <figure class="anim animatic" id="animatic"><div class="screen"><video src="assets/animacio/animatic-jaume-i.mp4" controls playsinline preload="none" width="1280" height="720"></video><p class="anim-prox" aria-hidden="true">Animatic</p></div><figcaption data-i18n="an.2">El Rat Penat de Jaume I<small>Animatic a partir del meu storyboard</small></figcaption></figure>
+      <figure class="anim animatic" id="animatic"><div class="screen"><video src="assets/animacio/animatic-jaume-i.mp4" poster="assets/animacio/animatic-jaume-i.jpg" controls playsinline preload="metadata" width="1280" height="720"></video></div><figcaption data-i18n="an.2">El Rat Penat de Jaume I<small>Animació, 55 s</small></figcaption></figure>
       <figure class="anim"><div class="screen"><video src="assets/animacio/farton.mp4" muted loop playsinline preload="none" data-auto></video></div><figcaption data-i18n="an.3">El Xato, de La Xata<small>Bucle per a xarxes</small></figcaption></figure>
     </div>
   </div>
@@ -1555,7 +1576,7 @@ val:{
  "f26.t":"Falles de València 2026","f26.p":"Proposta d'imatge gràfica. El cartell principal forma una falla plantada amb les figures dels cartells secundaris, que en són els ninots: Cridà, Plantà, Ofrena, Mascletà, Nit del Foc i Cremà.","f26.hint":"Arrossega per a vore més aplicacions",
  "dis.t":"Els projectes","dis.p":"A la prestatgeria de la nau es guarden els projectes de marca: identitats, packaging, editorial, una app i la proposta de Falles 2026. Tria una maqueta per a vore-la de prop.",
  "an.t":"La pantalla del taller","an.p":"Al racó, una pantalla on els personatges es mouen.",
- "an.1":"Passeig per l'Albufera<small>Cicle de caminada, 17 s</small>","an.2":"El Rat Penat de Jaume I<small>Animatic a partir del meu storyboard</small>","an.3":"El Xato, de La Xata<small>Bucle per a xarxes</small>",
+ "an.1":"Passeig per l'Albufera<small>Cicle de caminada, 17 s</small>","an.2":"El Rat Penat de Jaume I<small>Animació, 55 s</small>","an.3":"El Xato, de La Xata<small>Bucle per a xarxes</small>",
  "art.t":"L'artista","art.lede":"Des de xicotet vull ser artista faller. Ara ho estic fent possible.",
  "art.p1":"Estudie Multimèdia i Arts Digitals a la Universitat Catòlica de València. La passió per les Falles i per l'art em va portar a este grau amb un objectiu: ser dissenyador i artista faller.",
  "art.p2":"Dibuixe a mà, amb llapis i retoladors calibrats, i en digital amb Procreate. Treballe la identitat, el packaging, l'editorial i la il·lustració, sempre amb un peu en la tradició valenciana.",
@@ -1611,7 +1632,7 @@ cas:{
  "f26.t":"Fallas de Valencia 2026","f26.p":"Propuesta de imagen gráfica. El cartel principal forma una falla plantada con las figuras de los carteles secundarios, que son sus ninots: Cridà, Plantà, Ofrenda, Mascletà, Nit del Foc y Cremà.","f26.hint":"Arrastra para ver más aplicaciones",
  "dis.t":"Los proyectos","dis.p":"En la estantería de la nave se guardan los proyectos de marca: identidades, packaging, editorial, una app y la propuesta de Fallas 2026. Elige una maqueta para verla de cerca.",
  "an.t":"La pantalla del taller","an.p":"En un rincón, una pantalla donde los personajes se mueven.",
- "an.1":"Paseo por la Albufera<small>Ciclo de caminata, 17 s</small>","an.2":"El Rat Penat de Jaume I<small>Animatic a partir de mi storyboard</small>","an.3":"El Xato, de La Xata<small>Bucle para redes</small>",
+ "an.1":"Paseo por la Albufera<small>Ciclo de caminata, 17 s</small>","an.2":"El Rat Penat de Jaume I<small>Animación, 55 s</small>","an.3":"El Xato, de La Xata<small>Bucle para redes</small>",
  "art.t":"El artista","art.lede":"Desde pequeño quiero ser artista fallero. Ahora lo estoy haciendo posible.",
  "art.p1":"Estudio Multimedia y Artes Digitales en la Universidad Católica de Valencia. La pasión por las Fallas y por el arte me llevó a este grado con un objetivo: ser diseñador y artista fallero.",
  "art.p2":"Dibujo a mano, con lápiz y rotuladores calibrados, y en digital con Procreate. Trabajo la identidad, el packaging, el editorial y la ilustración, siempre con un pie en la tradición valenciana.",
@@ -1687,7 +1708,7 @@ const fites = [
  {d:{val:"Nov. 2024",cas:"Nov. 2024"},img:"assets/ilustra/dana-mareta.webp",v:"12M",vl:"views2",href:"https://valenciaplaza.com/valenciaplaza/miguel-llevo-la-dana-a-su-terreno-y-emociono-a-aitana-o-quevedo",
   t:{val:"«Mareta, ampara els pobles»",cas:"«Mareta, ampara els pobles»"},
   p:{val:"Amb menys de 500 seguidors, les meues il·lustracions de la DANA van arribar a milions de persones i les van compartir Aitana, Quevedo i Saiko. Amb les làmines vaig recaptar 1.200 € en tres dies per als afectats.",cas:"Con menos de 500 seguidores, mis ilustraciones de la DANA llegaron a millones de personas y las compartieron Aitana, Quevedo y Saiko. Con las láminas recaudé 1.200 € en tres días para los afectados."}},
- {d:{val:"Nov. 2024",cas:"Nov. 2024"},img:"assets/ilustra/dana-valencians.webp",v:"17M",vl:"views2",href:"https://www.instagram.com/cebritart/",
+ {d:{val:"Nov. 2024",cas:"Nov. 2024"},img:"assets/ilustra/dana-valencians.webp",v:"17M",vl:"views2",href:"https://www.instagram.com/p/DVt8kgwCHLc/",
   t:{val:"«Valencians, en peu alcem-se»",cas:"«Valencians, en peu alcem-se»"},
   p:{val:"La vaig publicar com a canal d'ajuda: els comentaris eren per a demanar i oferir ajuda. La van compartir artistes i influencers i va arribar a 17 milions de visualitzacions.",cas:"La publiqué como canal de ayuda: los comentarios eran para pedir y ofrecer ayuda. La compartieron artistas e influencers y llegó a 17 millones de visualizaciones."}},
  {d:{val:"Març 2025",cas:"Marzo 2025"},img:"assets/hitos/mocador-solidari.webp",reel:"DHGORj4tfu_",v:"15,6k",
@@ -1772,7 +1793,7 @@ const projects = [
  {id:"fallera",name:"La Fallera",kind:{val:"Redisseny d'identitat",cas:"Rediseño de identidad"},
   p:{val:"Una adaptació moderna de la icona de l'arròs de tota la vida: síntesi de la fallera protagonista i un lleuger retoc en la tipografia original.",cas:"Una adaptación moderna del icono del arroz de toda la vida: síntesis de la fallera protagonista y un ligero retoque en la tipografía original."},
   li:{val:["Logotip i icona","Paleta i tipografia","Packaging i aplicacions"],cas:["Logotipo e icono","Paleta y tipografía","Packaging y aplicaciones"]},
-  thumb:"assets/proyectos/nou/fallera-logo.webp", reel:"",
+  thumb:"assets/proyectos/nou/fallera-logo.webp", reel:"https://www.instagram.com/reel/DT6FWT5ArKy/",
   imgs:["assets/proyectos/nou/fallera-logo.webp",...["la-fallera/p34","la-fallera/p36","la-fallera/p39","la-fallera/p40","la-fallera/p42"].map(s=>P+s+".webp")]},
  {id:"xata",name:"La Xata",kind:{val:"Creació de marca",cas:"Creación de marca"},
   p:{val:"Marca de productes de xufa amb personatge protagonista i una submarca, El Xato, per als fartons. La Xata convida a refrescar-se i el Xato, a compartir.",cas:"Marca de productos de chufa con personaje protagonista y una submarca, El Xato, para los fartons. La Xata invita a refrescarse y el Xato, a compartir."},
@@ -1812,7 +1833,7 @@ function applyLang(){
   document.documentElement.lang = lang === "val" ? "ca-valencia" : "es";
   $$("[data-i18n]").forEach(el => { const k = el.dataset.i18n, v = (tactil && typeof T[lang][k + ".tac"] === "string") ? T[lang][k + ".tac"] : T[lang][k]; if (typeof v === "string") el.innerHTML = v; });
   $$("#lang b").forEach(b => b.classList.toggle("on", b.dataset.l === lang));
-  renderNinots(); window.__indNote && window.__indNote(); window.__capella && window.__capella(); renderQuiosc(); renderFites(); renderCalendari(); window.__ofrena && window.__ofrena(); renderF26(); renderProjects(); renderKinds(); window.__compte && window.__compte();
+  renderNinots(); window.__indNote && window.__indNote(); window.__capella && window.__capella(); renderQuiosc(); renderFites(); renderCalendari(); window.__ofrena && window.__ofrena(); renderF26(); renderProjects(); renderKinds(); window.__compte && window.__compte(); window.__cremaText && window.__cremaText();
   $("#formOut").hidden = true;
 }
 $("#lang").addEventListener("click", () => { lang = lang === "val" ? "cas" : "val"; store.set("cebri-lang", lang); applyLang(); });
@@ -2597,10 +2618,36 @@ $$("#board .sheet").forEach(sh => sh.addEventListener("animationend", () => sh.c
 (() => {
   const g = $("#ninotsGrid"), b = $("#mesNinots"), mq = matchMedia("(max-width: 700px)");
   let obert = false;
+  /* paret justificada: cada fila ocupa tot l'ample, sense forats al final */
+  let ampleAnt = 0;
+  const paret = () => {
+    g.querySelectorAll(".salt").forEach(x => x.remove());
+    const els = [...g.querySelectorAll(".ninot")].filter(el => !el.hidden && !(g.classList.contains("plegat") && el.classList.contains("extra")));
+    const W = g.clientWidth; ampleAnt = W; if (!els.length || !W) return;
+    const gap = parseFloat(getComputedStyle(g).columnGap) || 16, fr = els[0].querySelector(".frame"), pad = 2 * (parseFloat(getComputedStyle(fr).paddingLeft) || 0);
+    const ar = els.map(el => { const im = el.querySelector("img"); return (+im.getAttribute("width") || 1) / (+im.getAttribute("height") || 1); });
+    const n = els.length, alt = W < 520 ? 150 : W < 900 ? 220 : W < 1500 ? 290 : 340, tot = ar.reduce((a, c) => a + c, 0);
+    let k = Math.max(1, Math.min(n, Math.round(tot * alt / W))); if (W < 520) k = Math.max(k, Math.ceil(n / 3));
+    // partició en k files contigües amb la suma de proporcions més igualada possible
+    const pre = [0]; ar.forEach(v => pre.push(pre[pre.length - 1] + v)); const mitja = tot / k;
+    const cost = Array.from({ length: k + 1 }, () => new Array(n + 1).fill(Infinity)), tall = Array.from({ length: k + 1 }, () => new Array(n + 1).fill(0));
+    cost[0][0] = 0;
+    for (let r = 1; r <= k; r++) for (let j = r; j <= n; j++) for (let i = r - 1; i < j; i++) {
+      const s = pre[j] - pre[i], c = cost[r - 1][i] + (s - mitja) ** 2 + (j - i === 1 && k > 1 && W < 520 ? 2 : 0);
+      if (c < cost[r][j]) { cost[r][j] = c; tall[r][j] = i; } }
+    const files = []; let j = n; for (let r = k; r >= 1; r--) { const i = tall[r][j]; files.unshift([i, j]); j = i; }
+    files.forEach(([i, j], f) => {
+      const m = j - i, sum = pre[j] - pre[i], h = (W - gap * (m - 1) - pad * m - .5) / sum;
+      for (let q = i; q < j; q++) els[q].style.setProperty("--w", (ar[q] * h + pad).toFixed(2) + "px");
+      if (f < files.length - 1) { const sb = document.createElement("i"); sb.className = "salt"; sb.setAttribute("aria-hidden", "true"); els[j - 1].after(sb); }
+    });
+  };
+  window.__paret = paret;
+  new ResizeObserver(() => { if (Math.abs(g.clientWidth - ampleAnt) > 1) paret(); }).observe(g);
   const aplica = () => { const vis = [...g.querySelectorAll(".ninot:not([hidden])")], plega = mq.matches && !obert && vis.length > 8;
-    vis.forEach((el, i) => el.classList.toggle("extra", plega && i >= 8)); g.classList.toggle("plegat", plega); b.hidden = !plega; };
+    vis.forEach((el, i) => el.classList.toggle("extra", plega && i >= 8)); g.classList.toggle("plegat", plega); b.hidden = !plega; paret(); };
   b.addEventListener("click", () => { obert = true; aplica(); so.vibra("petit"); });
-  new MutationObserver(aplica).observe(g, { childList: true, subtree: true, attributes: true, attributeFilter: ["hidden"] });
+  new MutationObserver(ms => { if (ms.every(m => m.type === "childList" && [...m.addedNodes, ...m.removedNodes].every(x => x.classList && x.classList.contains("salt")))) return; aplica(); }).observe(g, { childList: true, subtree: true, attributes: true, attributeFilter: ["hidden"] });
   mq.addEventListener("change", aplica); aplica();
 })();
 
@@ -2615,14 +2662,14 @@ $$("#board .sheet").forEach(sh => sh.addEventListener("animationend", () => sh.c
     { src: "assets/vector/mare-deu-raigs.webp", t: { val: "La Geperudeta", cas: "La Geperudeta" } },
     { src: "assets/vector/mare-deu-micalet.webp", t: { val: "La Mare de Déu i el Micalet", cas: "La Mare de Déu y el Micalet" } },
     { src: "assets/ilustra/serie-11-maredeueta.webp", t: { val: "La Mare de Déu, a tinta", cas: "La Mare de Déu, a tinta" } },
-    { src: "assets/ilustra/dana-mareta.webp", t: { val: "«Mareta, ampara els pobles»", cas: "«Mareta, ampara els pobles»" } },
-    { src: "assets/vector/mare-deu-sant-vicent.webp", t: { val: "La Mare de Déu i Sant Vicent", cas: "La Mare de Déu y San Vicente" } },
-    { src: "assets/proyectos/nou/jubileu-icona-2.webp", t: { val: "Pelegrins d'esperança, Jubileu 2025", cas: "Peregrinos de esperanza, Jubileo 2025" } }
+    { src: "assets/capella/mareta.webp", t: { val: "«Mareta, ampara els pobles»", cas: "«Mareta, ampara els pobles»" } },
+    { src: "assets/capella/sant-vicent.webp", t: { val: "La Mare de Déu i Sant Vicent", cas: "La Mare de Déu y San Vicente" } },
+    { src: "assets/capella/jubileu.webp", t: { val: "Pelegrins d'esperança, Jubileu 2025", cas: "Peregrinos de esperanza, Jubileo 2025" } }
   ];
   let i = 0;
   const img = $("#capImg"), cap = $("#capCap"), tria = $("#capTria"), fig = $("#capFig");
   const posa = (k, anim) => { i = k; const p = PEC[k];
-    const fes = () => { img.src = p.src; img.alt = L(p.t); cap.textContent = L(p.t); fig.classList.remove("canvia"); };
+    const fes = () => { img.src = p.src; img.classList.toggle("omple", /mare-deu-(raigs|micalet)/.test(p.src)); window.__cap3d && window.__cap3d.peca(p.src, /mare-deu-(raigs|micalet)/.test(p.src)); img.alt = L(p.t); cap.textContent = L(p.t); fig.classList.remove("canvia"); };
     if (anim && !reduce) { fig.classList.add("canvia"); setTimeout(fes, 280); } else fes();
     $$("button", tria).forEach((b, n) => b.setAttribute("aria-pressed", n === k)); };
   const render = () => { tria.innerHTML = PEC.map((p, k) => `<button type="button" aria-pressed="${k === i}" aria-label="${L(p.t)}"><img src="${p.src}" alt="" loading="lazy"></button>`).join(""); posa(i, false); };
@@ -2630,29 +2677,47 @@ $$("#board .sheet").forEach(sh => sh.addEventListener("animationend", () => sh.c
   $("#capBtn").addEventListener("click", () => posa((i + 1) % PEC.length, true));
   // espelmes: cada visita en pot encendre; s'apaguen soles a poc a poc
   const esp = $$(".altar-espelmes i");
-  let enceses = 2; const pinta = () => esp.forEach((e, n) => e.classList.toggle("on", n < enceses));
+  let enceses = 2; const pinta = () => { esp.forEach((e, n) => e.classList.toggle("on", n < enceses)); window.__cap3d && window.__cap3d.encen(enceses); };
   pinta();
+  window.__capMunta = () => { window.__cap3d && (window.__cap3d.peca(PEC[i].src, /mare-deu-(raigs|micalet)/.test(PEC[i].src)), window.__cap3d.encen(enceses)); };
+  window.__capSeg = () => posa((i + 1) % PEC.length, true);
   $("#espelma").addEventListener("click", () => { enceses = Math.min(esp.length, enceses + 1); pinta(); window.__so && window.__so.vibra("petit"); });
   window.__capella = render; render();
 })();
 
 
-/* ================= LA CREMÀ: foc, cendra i l'esquelet de fusta ================= */
+/* ================= LA CREMÀ: tot en flames, i tu eres el bomber ================= */
 (() => {
-  const fig = $("#burn"), cv = $("#burnCv"), img = $("#peuImg"); if (!fig || !cv || reduce) return;
+  const fig = $("#burn"), cv = $("#burnCv"), img = $("#peuImg"), sec = $("#crema"); if (!fig || !cv || !sec || reduce) return;
   const W = 420, H = Math.round(W * 1154 / 813); cv.width = W; cv.height = H;
   const cx = cv.getContext("2d", { willReadFrequently: true });
-  let src = null, esq = null, out = cx.createImageData(W, H), noise = new Float32Array(W * H), started = false, t0 = 0, raf = 0, cendra = [];
-  // soroll suau per a que el front del foc siga irregular
-  (() => { const G = 18, gw = Math.ceil(W / G) + 2, gh = Math.ceil(H / G) + 2, g = new Float32Array(gw * gh).map(() => Math.random());
-    const g2 = new Float32Array(gw * gh).map(() => Math.random());
+  // capa de damunt: flames que ixen del quadre, fum, aigua i la mànega
+  const ov = document.createElement("canvas"); ov.className = "bombers-cv"; ov.setAttribute("aria-hidden", "true"); sec.appendChild(ov);
+  const ox = ov.getContext("2d");
+  const pista = document.createElement("figcaption"); pista.className = "burn-pista"; pista.setAttribute("aria-live", "polite"); fig.appendChild(pista);
+  const G = 5, gw = Math.ceil(W / G), gh = Math.ceil(H / G), NC = gw * gh;
+  const F = new Float32Array(NC), B = new Float32Array(NC), Wt = new Float32Array(NC), Ap = new Uint8Array(NC), Rt = new Float32Array(NC);
+  let src = null, esq = null, out = cx.createImageData(W, H), noise = new Float32Array(W * H);
+  let estat = "res", t0 = 0, raf = 0, last = 0, vis = false, dpr = 1, sumF = 0;
+  let flames = [], fums = [], aigua = [], cendra = [];
+  const ptr = { x: -999, y: -999, dins: false, prem: false, tipus: "mouse" }, boq = { x: 0, y: 0, a: 0, ok: false };
+  const tactil = matchMedia("(hover: none) and (pointer: coarse)").matches;
+  const txt = {
+    val: { foc: tactil ? "Crema! Eres el bomber: toca i arrossega damunt del foc per a apagar-lo." : "Crema! Eres el bomber: mantín premut damunt del foc per a apagar-lo.",
+      apagat: tactil ? "Apagada. Només queda la cendra. Toca-la per a tornar a cremar-la." : "Apagada. Només queda la cendra. Fes-hi clic per a tornar a cremar-la.",
+      cremat: tactil ? "S'ha cremat sencera. Toca-la per a plantar-la de nou." : "S'ha cremat sencera. Fes-hi clic per a plantar-la de nou." },
+    cas: { foc: tactil ? "¡Arde! Eres el bombero: toca y arrastra sobre el fuego para apagarlo." : "¡Arde! Eres el bombero: mantén pulsado sobre el fuego para apagarlo.",
+      apagat: tactil ? "Apagada. Solo queda la ceniza. Tócala para volver a quemarla." : "Apagada. Solo queda la ceniza. Haz clic para volver a quemarla.",
+      cremat: tactil ? "Se ha quemado entera. Tócala para plantarla de nuevo." : "Se ha quemado entera. Haz clic para plantarla de nuevo." } };
+  const posaPista = () => { pista.textContent = estat === "res" ? "" : (txt[lang] || txt.val)[estat] || ""; };
+  window.__cremaText = posaPista;
+  // soroll suau per a vores irregulars
+  (() => { const S = 18, sw = Math.ceil(W / S) + 2, sh = Math.ceil(H / S) + 2, g = new Float32Array(sw * sh).map(() => Math.random()), g2 = new Float32Array(sw * sh).map(() => Math.random());
     for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
-      const fx = x / G, fy = y / G, ix = fx | 0, iy = fy | 0, ux = fx - ix, uy = fy - iy, sx = ux * ux * (3 - 2 * ux), sy = uy * uy * (3 - 2 * uy);
-      const a = g[iy * gw + ix], b = g[iy * gw + ix + 1], c = g[(iy + 1) * gw + ix], d = g[(iy + 1) * gw + ix + 1];
-      const v = a + (b - a) * sx + (c - a) * sy + (a - b - c + d) * sx * sy;
-      const fx2 = x / 6, fy2 = y / 6; const v2 = g2[((fy2 | 0) % gh) * gw + ((fx2 | 0) % gw)];
-      noise[y * W + x] = v * .8 + v2 * .2; } })();
-  // l'esquelet de fusta que queda després de la cremà
+      const fx = x / S, fy = y / S, ix = fx | 0, iy = fy | 0, ux = fx - ix, uy = fy - iy, sx = ux * ux * (3 - 2 * ux), sy = uy * uy * (3 - 2 * uy);
+      const a = g[iy * sw + ix], b = g[iy * sw + ix + 1], c = g[(iy + 1) * sw + ix], d = g[(iy + 1) * sw + ix + 1];
+      noise[y * W + x] = (a + (b - a) * sx + (c - a) * sy + (a - b - c + d) * sx * sy) * .8 + g2[(((y / 6) | 0) % sh) * sw + (((x / 6) | 0) % sw)] * .2; } })();
+  for (let c = 0; c < NC; c++) { const x = (c % gw) * G, y = ((c / gw) | 0) * G; Rt[c] = .7 + noise[Math.min(H - 1, y) * W + Math.min(W - 1, x)] * .6; }
   function pintaEsquelet() {
     const c = document.createElement("canvas"); c.width = W; c.height = H; const k = c.getContext("2d");
     const gr = k.createRadialGradient(W / 2, H * .92, 10, W / 2, H * .7, H * .8); gr.addColorStop(0, "#5a2a12"); gr.addColorStop(.35, "#2a1a14"); gr.addColorStop(1, "#16110f");
@@ -2661,54 +2726,170 @@ $$("#board .sheet").forEach(sh => sh.addEventListener("animationend", () => sh.c
       k.strokeStyle = "#3b2716"; k.lineWidth = w + 3; k.lineCap = "round"; k.beginPath(); k.moveTo(x1 + j(), y1 + j()); k.lineTo(x2 + j(), y2 + j()); k.stroke();
       k.strokeStyle = "#7a5233"; k.lineWidth = w; k.beginPath(); k.moveTo(x1, y1); k.lineTo(x2, y2); k.stroke();
       k.strokeStyle = "rgba(255,150,60,.55)"; k.lineWidth = 1.2; k.beginPath(); k.moveTo(x1 + w * .3, y1); k.lineTo(x2 + w * .3, y2); k.stroke(); };
-    const B = H * .9, T = H * .14, cxm = W / 2;
-    fusta(W * .12, B, W * .88, B, 10);                         // base
-    fusta(W * .2, B, W * .2, H * .5, 8); fusta(W * .8, B, W * .8, H * .5, 8);   // pals laterals
-    fusta(cxm, B, cxm, T, 11);                                 // pal central
-    fusta(W * .2, H * .5, cxm, T + H * .06, 7); fusta(W * .8, H * .5, cxm, T + H * .06, 7);
-    for (let i = 0; i < 4; i++) { const y = B - (B - H * .5) * (i + 1) / 5; fusta(W * .2, y, W * .8, y, 5); }
-    fusta(W * .2, B, W * .8, H * .55, 4); fusta(W * .8, B, W * .2, H * .55, 4);
-    fusta(W * .33, H * .5, cxm, H * .3, 4); fusta(W * .67, H * .5, cxm, H * .3, 4); fusta(W * .3, H * .38, W * .7, H * .38, 5);
+    const Bs = H * .9, T = H * .14, m = W / 2;
+    fusta(W * .12, Bs, W * .88, Bs, 10); fusta(W * .2, Bs, W * .2, H * .5, 8); fusta(W * .8, Bs, W * .8, H * .5, 8); fusta(m, Bs, m, T, 11);
+    fusta(W * .2, H * .5, m, T + H * .06, 7); fusta(W * .8, H * .5, m, T + H * .06, 7);
+    for (let i = 0; i < 4; i++) { const y = Bs - (Bs - H * .5) * (i + 1) / 5; fusta(W * .2, y, W * .8, y, 5); }
+    fusta(W * .2, Bs, W * .8, H * .55, 4); fusta(W * .8, Bs, W * .2, H * .55, 4);
+    fusta(W * .33, H * .5, m, H * .3, 4); fusta(W * .67, H * .5, m, H * .3, 4); fusta(W * .3, H * .38, W * .7, H * .38, 5);
     esq = k.getImageData(0, 0, W, H).data;
   }
   function carrega() { if (src) return true; if (!img.complete || !img.naturalWidth) return false;
-    cx.drawImage(img, 0, 0, W, H); src = cx.getImageData(0, 0, W, H).data; pintaEsquelet(); fig.classList.add("cv"); pinta(-.2); return true; }
-  function pinta(L) {
+    cx.drawImage(img, 0, 0, W, H); src = cx.getImageData(0, 0, W, H).data; pintaEsquelet(); fig.classList.add("cv"); pinta(); return true; }
+  // sprites de flama, fum i vapor
+  const sprite = (c0, c1) => { const c = document.createElement("canvas"); c.width = c.height = 64; const k = c.getContext("2d"), g = k.createRadialGradient(32, 32, 0, 32, 32, 32);
+    g.addColorStop(0, c0); g.addColorStop(.4, c1); g.addColorStop(1, "rgba(0,0,0,0)"); k.fillStyle = g; k.fillRect(0, 0, 64, 64); return c; };
+  const spG = sprite("rgba(255,250,215,1)", "rgba(255,200,70,.75)"), spT = sprite("rgba(255,170,60,1)", "rgba(230,80,25,.6)"), spR = sprite("rgba(220,70,30,.8)", "rgba(120,30,20,.35)");
+  const spF = sprite("rgba(45,40,40,.55)", "rgba(40,36,36,.25)"), spV = sprite("rgba(255,255,255,.75)", "rgba(230,238,245,.35)");
+  // geometria: el quadre està girat, així que convertim entre píxels del llenç i la pantalla
+  let geo = null;
+  const mesura = () => { const r = fig.getBoundingClientRect(), sr = sec.getBoundingClientRect(), tf = getComputedStyle(fig).transform;
+    const m = tf && tf !== "none" ? new DOMMatrixReadOnly(tf) : new DOMMatrixReadOnly();
+    geo = { cx: r.left + r.width / 2 - sr.left, cy: r.top + r.height / 2 - sr.top, fw: fig.offsetWidth, fh: fig.offsetHeight, a: m.a, b: m.b, c: m.c, d: m.d, sl: sr.left, st: sr.top, sw: sr.width, sh: sr.height }; };
+  const aPant = (u, v) => { const g = geo, x = 8 + u * (g.fw - 16) / W - g.fw / 2, y = 8 + v * (g.fh - 16) / H - g.fh / 2; return [g.cx + g.a * x + g.c * y, g.cy + g.b * x + g.d * y]; };
+  const aLlenc = (X, Y) => { const g = geo, x0 = X - g.cx, y0 = Y - g.cy, det = g.a * g.d - g.b * g.c, x = (g.d * x0 - g.c * y0) / det, y = (-g.b * x0 + g.a * y0) / det;
+    return [(x + g.fw / 2 - 8) * W / (g.fw - 16), (y + g.fh / 2 - 8) * H / (g.fh - 16)]; };
+  const escala = () => (geo.fw - 16) / W;
+  const mida = () => { dpr = Math.min(devicePixelRatio || 1, 1.5); ov.width = Math.round(sec.clientWidth * dpr); ov.height = Math.round(sec.clientHeight * dpr); };
+  mida(); new ResizeObserver(mida).observe(sec);
+
+  function encen() {
+    F.fill(0); B.fill(0); Wt.fill(0); Ap.fill(0); flames = []; fums = []; aigua = []; cendra = [];
+    for (let x = 0; x < gw; x++) { F[(gh - 1) * gw + x] = .9; if (Math.random() < .5) F[(gh - 2) * gw + x] = .6; }
+    for (let n = 0; n < 6; n++) F[((gh * (.55 + Math.random() * .4)) | 0) * gw + ((Math.random() * gw) | 0)] = 1;
+    estat = "foc"; t0 = performance.now(); posaPista(); fig.classList.add("apagant"); window.__so && window.__so.vibra && window.__so.vibra("gran"); arrenca();
+  }
+  function simula(dt, el) {
+    sumF = 0;
+    for (let y = 0; y < gh; y++) for (let x = 0; x < gw; x++) {
+      const c = y * gw + x; let f = F[c];
+      if (B[c] < 1 && Wt[c] < .25) {
+        const sota = y < gh - 1 ? F[c + gw] : 0, dalt = y > 0 ? F[c - gw] : 0, esq_ = x > 0 ? F[c - 1] : 0, dre = x < gw - 1 ? F[c + 1] : 0;
+        const calor = sota * 1.0 + (esq_ + dre) * .32 + dalt * .1;
+        f += calor * dt * 26 * Rt[c] * (el < 4 ? 1 : .55);
+      }
+      if (B[c] >= 1) f -= dt * .9;
+      f -= Wt[c] * dt * 3;
+      f = f < 0 ? 0 : f > 1 ? 1 : f; F[c] = f;
+      B[c] = Math.min(1.2, B[c] + f * dt / (15 * Rt[c]));
+      if (Wt[c] > 0) Wt[c] = Math.max(0, Wt[c] - dt / 6);
+      sumF += f;
+    }
+  }
+  function remulla(u, v) {
+    const ccx = u / G, ccy = v / G, R = 4.2;
+    let vapor = 0;
+    for (let y = Math.max(0, (ccy - R) | 0); y <= Math.min(gh - 1, (ccy + R) | 0); y++) for (let x = Math.max(0, (ccx - R) | 0); x <= Math.min(gw - 1, (ccx + R) | 0); x++) {
+      const d2 = (x - ccx) ** 2 + (y - ccy) ** 2; if (d2 > R * R) continue; const k = Math.exp(-d2 / (R * R * .45)), c = y * gw + x;
+      vapor += F[c] * k; F[c] = Math.max(0, F[c] - .45 * k); Wt[c] = Math.max(Wt[c], k); if (B[c] > .1) Ap[c] = 1; }
+    return vapor;
+  }
+  function pinta() {
     const o = out.data;
-    for (let y = 0; y < H; y++) { const h = 1 - y / H;
-      for (let x = 0; x < W; x++) { const i = y * W + x, p = i * 4, d = h + (noise[i] - .5) * .22 - L;
-        if (d < 0) { // cremat: queda l'esquelet, amb brases que bateguen prop del front
-          const br = d > -.05 ? (1 + d / .05) : 0;
-          o[p] = Math.min(255, esq[p] + br * 200); o[p + 1] = Math.min(255, esq[p + 1] + br * 70); o[p + 2] = esq[p + 2]; o[p + 3] = 255; }
-        else if (d < .028) { const k = d / .028; // la vora: carbó i una línia de foc
-          const r = 255, g = 120 + 120 * (1 - k), b = 40 * (1 - k);
-          const m = k < .45 ? 1 : 1 - (k - .45) / .55;
-          o[p] = r * m + 30 * (1 - m); o[p + 1] = g * m + 22 * (1 - m); o[p + 2] = b * m + 18 * (1 - m); o[p + 3] = 255; }
-        else if (d < .2) { const k = 1 - (d - .028) / .172, s0 = src[p], s1 = src[p + 1], s2 = src[p + 2]; // calor: el paper es fa taronja i torrat
-          const a = k * k * .85;
-          o[p] = s0 * (1 - a) + (s0 * .55 + 120) * a; o[p + 1] = s1 * (1 - a) + (s1 * .35 + 45) * a; o[p + 2] = s2 * (1 - a) + s2 * .15 * a; o[p + 3] = 255; }
-        else { o[p] = src[p]; o[p + 1] = src[p + 1]; o[p + 2] = src[p + 2]; o[p + 3] = 255; } } }
+    for (let y = 0; y < H; y++) { const cy_ = ((y / G) | 0) * gw;
+      for (let x = 0; x < W; x++) { const i = y * W + x, p = i * 4, c = cy_ + ((x / G) | 0), nz = noise[i];
+        const bb = B[c] + (nz - .5) * .2, ff = F[c];
+        let r = src[p], g = src[p + 1], b = src[p + 2];
+        if (bb > .04) {
+          if (bb < .4) { const k = Math.min(1, (bb - .04) / .36) * .9; r = r * (1 - k) + (r * .55 + 120) * k; g = g * (1 - k) + (g * .35 + 45) * k; b = b * (1 - k) + b * .15 * k; }
+          else if (bb < .72) { const k = (bb - .4) / .32, r0 = r * .55 + 120, g0 = g * .35 + 45, b0 = b * .15; r = r0 + (34 - r0) * k; g = g0 + (24 - g0) * k; b = b0 + (19 - b0) * k; }
+          else { const k = Math.min(1, (bb - .72) / .28); r = 34 + (esq[p] - 34) * k; g = 24 + (esq[p + 1] - 24) * k; b = 19 + (esq[p + 2] - 19) * k; }
+          if (Ap[c] && bb > .3) { const k = Math.min(1, (bb - .3) / .25) * .78, gr = 105 + nz * 70; r = r + (gr - r) * k; g = g + (gr * .97 - g) * k; b = b + (gr * .93 - b) * k; }
+        }
+        if (ff > 0) { r += ff * 120; g += ff * 45; b += ff * 5; }
+        o[p] = r > 255 ? 255 : r; o[p + 1] = g > 255 ? 255 : g; o[p + 2] = b > 255 ? 255 : b; o[p + 3] = 255; } }
     cx.putImageData(out, 0, 0);
   }
-  const DUR = 7500;
-  function tick(now) {
-    raf = 0; const t = Math.min(1, (now - t0) / DUR), e = t < .5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2;
-    const L = -.15 + e * 1.35; pinta(L);
-    // cendra que es desprén del front i puja
-    if (t < 1) for (let n = 0; n < 7; n++) { const x = Math.random() * W, y = H * (1 - Math.max(0, Math.min(1, L))) + (Math.random() - .5) * 24;
-      cendra.push({ x, y, vx: (Math.random() - .5) * .6, vy: -.6 - Math.random() * 1.4, l: 0, m: 60 + Math.random() * 60, s: 1 + Math.random() * 2.2, f: Math.random() < .35 }); }
-    else if (Math.random() < .25) cendra.push({ x: W * (.2 + Math.random() * .6), y: H * .9, vx: (Math.random() - .5) * .4, vy: -.5 - Math.random(), l: 0, m: 80, s: 1.2, f: true });
-    cendra = cendra.filter(c => ++c.l < c.m);
-    for (const c of cendra) { c.x += c.vx + Math.sin((c.l + c.y) * .08) * .3; c.y += c.vy; const a = 1 - c.l / c.m;
-      cx.fillStyle = c.f ? `rgba(255,${150 + (a * 80) | 0},70,${a})` : `rgba(160,152,142,${a * .9})`;
-      cx.fillRect(c.x, c.y, c.s, c.s * (c.f ? 1 : .6)); }
-    if (t < 1 || cendra.length) raf = requestAnimationFrame(tick); else idle();
+  // la mànega, amb el mateix traç de la grua: contorn de tinta i farcits plans
+  const tinta = () => getComputedStyle(sec).getPropertyValue("--ink").trim() || "#2f4b7c";
+  function manega(k, s) {
+    const ink = tinta(), lw = 2.2 * s;
+    // la boca apunta on mires, i la mànega cau cap avall fins a eixir de la pantalla
+    const ax = Math.cos(boq.a), ay = Math.sin(boq.a), cul = [boq.x - ax * 62 * s, boq.y - ay * 62 * s];
+    const fi = [cul[0] - Math.sign(ax || 1) * 120 * s, geo.sh + 60 - (geo.st < 0 ? geo.st : 0) + Math.max(0, geo.st + geo.sh - innerHeight)];
+    fi[1] = Math.min(fi[1], innerHeight - geo.st + 60);
+    k.lineCap = "round"; k.lineJoin = "round";
+    k.beginPath(); k.moveTo(cul[0], cul[1]); k.bezierCurveTo(cul[0] - ax * 110 * s, cul[1] - ay * 110 * s + 40 * s, fi[0], fi[1] - 180 * s, fi[0], fi[1]);
+    k.strokeStyle = ink; k.lineWidth = 17 * s; k.stroke(); k.strokeStyle = "#c3272b"; k.lineWidth = 17 * s - 2 * lw; k.stroke();
+    k.setLineDash([2 * s, 16 * s]); k.strokeStyle = "rgba(255,255,255,.35)"; k.lineWidth = 2 * s; k.stroke(); k.setLineDash([]);
+    k.save(); k.translate(boq.x, boq.y); k.rotate(boq.a); k.scale(s, s); k.lineWidth = 2.2; k.strokeStyle = ink;
+    const forma = (pts, col) => { k.beginPath(); pts.forEach(([x, y], n) => n ? k.lineTo(x, y) : k.moveTo(x, y)); k.closePath(); k.fillStyle = col; k.fill(); k.stroke(); };
+    forma([[-46, 9], [-36, 9], [-38, 32], [-50, 32]], "#c6b594");                  // empunyadura
+    forma([[-62, -11], [-50, -11], [-50, 11], [-62, 11]], "#a8946c");              // racor
+    forma([[-50, -8], [-16, -7], [-16, 7], [-50, 8]], "#fdfdfb");                 // canó
+    forma([[-42, -8], [-30, -8], [-26, -17], [-40, -16]], "#c6b594");              // palanca
+    forma([[-16, -6], [0, -3.5], [0, 3.5], [-16, 6]], "#e2c27f");                 // broquet
+    k.beginPath(); k.moveTo(-40, -8); k.lineTo(-40, 8); k.moveTo(-24, -7); k.lineTo(-24, 7); k.moveTo(-56, -11); k.lineTo(-56, 11); k.stroke();
+    k.restore();
   }
-  // acabada: les brases de l'esquelet bateguen de tant en tant
-  let idleT = 0; function idle() { clearInterval(idleT); idleT = setInterval(() => { if (!document.hidden && fig.getBoundingClientRect().top < innerHeight) { cendra.push({ x: W * (.2 + Math.random() * .6), y: H * (.6 + Math.random() * .3), vx: 0, vy: -.6, l: 0, m: 50, s: 1.4, f: true }); if (!raf) { t0 = performance.now() - DUR; raf = requestAnimationFrame(tick); } } }, 700); }
-  const crema = () => { if (!carrega()) { img.addEventListener("load", crema, { once: true }); return; } clearInterval(idleT); cendra = []; t0 = performance.now(); if (!raf) raf = requestAnimationFrame(tick); window.__so && window.__so.vibra && window.__so.vibra("gran"); };
-  new IntersectionObserver(([e]) => { if (e.isIntersecting && !started) { started = true; setTimeout(crema, 700); } }, { threshold: .55 }).observe(fig);
-  fig.addEventListener("click", () => { if (raf) return; started = true; crema(); });
+  function arrenca() { if (!raf) { last = performance.now(); raf = requestAnimationFrame(tick); } }
+  function tick(now) {
+    raf = 0; const dt = Math.min(.05, (now - last) / 1000); last = now; const el = (now - t0) / 1000;
+    if (!src) { if (!carrega()) { raf = requestAnimationFrame(tick); return; } }
+    mesura(); const s = escala();
+    if (estat === "foc") {
+      simula(dt, el);
+      if (el > 2.5 && sumF < .6) { estat = "apagat"; posaPista(); fig.classList.remove("apagant"); window.__so && window.__so.vibra && window.__so.vibra("petit"); }
+      else if (el > 3 && sumF < .6 * 0 + .01) { /* res */ }
+      let viu = false; for (let c = 0; c < NC && !viu; c++) if (B[c] < .98 && F[c] > 0) viu = true;
+      if (!viu && el > 3 && estat === "foc") { estat = "cremat"; posaPista(); fig.classList.remove("apagant"); }
+    }
+    pinta();
+    // flames: naixen de les cel·les que cremen i pugen per damunt del quadre
+    if (estat === "foc" && vis) for (let n = 0; n < 55; n++) { const c = (Math.random() * NC) | 0, f = F[c]; if (f < .25 || Math.random() > f) continue;
+      const [X, Y] = aPant((c % gw + Math.random()) * G, ((c / gw) | 0) * G + Math.random() * G);
+      flames.push({ x: X, y: Y, vx: (Math.random() - .5) * .6, vy: -(1.4 + Math.random() * 2.4) * Math.max(.7, s), l: 0, m: 18 + Math.random() * 22, r: (6 + Math.random() * 11) * Math.max(.75, s) * (.6 + f * .6) });
+      if (Math.random() < .04) fums.push({ x: X, y: Y - 20, vx: (Math.random() - .5) * .5, vy: -.8 - Math.random(), l: 0, m: 80 + Math.random() * 60, r: 20 + Math.random() * 20, sp: spF }); }
+    if (flames.length > 900) flames.splice(0, flames.length - 900);
+    // la mànega segueix el punter amb una mica d'inèrcia; l'aigua ix mentre prems
+    const mostra = estat === "foc" && ptr.dins;
+    if (mostra) { const fc = aPant(W / 2, H / 2), sx = ptr.x >= fc[0] - 20 ? 1 : -1, tx = ptr.x + sx * 105 * s * 1.2, ty = ptr.y + 120 * s * 1.2;
+      if (!boq.ok) { boq.x = tx; boq.y = ty; boq.ok = true; } boq.x += (tx - boq.x) * .22; boq.y += (ty - boq.y) * .22; boq.a = Math.atan2(ptr.y - boq.y, ptr.x - boq.x);
+      if (ptr.prem) for (let n = 0; n < 7; n++) { const d = Math.hypot(ptr.x - boq.x, ptr.y - boq.y), jx = (Math.random() - .5) * 26 * s, jy = (Math.random() - .5) * 26 * s;
+        aigua.push({ x0: boq.x + Math.cos(boq.a) * 2, y0: boq.y + Math.sin(boq.a) * 2, x1: ptr.x + jx, y1: ptr.y + jy, t: 0, v: 1 / (8 + d / 40 + Math.random() * 3), r: (2 + Math.random() * 2.4) * Math.max(.8, s) }); } }
+    else boq.ok = false;
+    // dibuix de la capa de damunt
+    ox.setTransform(dpr, 0, 0, dpr, 0, 0); ox.clearRect(0, 0, ov.width, ov.height);
+    if (estat === "foc" && sumF > 0) { const [gx, gy] = aPant(W / 2, H * .7), rr = (geo.fw + geo.fh) * .7, int = Math.min(1, sumF / (NC * .35));
+      const g = ox.createRadialGradient(gx, gy, 10, gx, gy, rr); g.addColorStop(0, `rgba(255,140,50,${.38 * int})`); g.addColorStop(1, "rgba(255,120,40,0)");
+      ox.globalCompositeOperation = "lighter"; ox.fillStyle = g; ox.fillRect(gx - rr, gy - rr, rr * 2, rr * 2); }
+    ox.globalCompositeOperation = "source-over";
+    fums = fums.filter(p => ++p.l < p.m); for (const p of fums) { p.x += p.vx + Math.sin((p.l + p.y) * .03) * .4; p.y += p.vy; const a = Math.sin(Math.PI * p.l / p.m), r = p.r * (1 + p.l / p.m * 1.6);
+      ox.globalAlpha = a * (p.sp === spV ? .8 : .55); ox.drawImage(p.sp, p.x - r, p.y - r, r * 2, r * 2); }
+    ox.globalCompositeOperation = "lighter";
+    flames = flames.filter(p => ++p.l < p.m); for (const p of flames) { p.x += p.vx + Math.sin((p.l + p.x) * .2) * .5; p.y += p.vy; const k = p.l / p.m, r = p.r * (1 - k * .55);
+      ox.globalAlpha = (1 - k) * .6; ox.drawImage(k < .22 ? spG : k < .6 ? spT : spR, p.x - r * .8, p.y - r * 1.6, r * 1.6, r * 3.2); }
+    ox.globalCompositeOperation = "source-over"; ox.globalAlpha = 1;
+    // aigua: gotes amb contorn de tinta, com la resta del dibuix
+    const ink = tinta(); ox.strokeStyle = ink; ox.lineWidth = 1.2;
+    aigua = aigua.filter(p => { p.t += p.v; if (p.t >= 1) { const [u, v] = aLlenc(p.x1, p.y1);
+        if (u >= 0 && u < W && v >= 0 && v < H && estat === "foc") { const vp = remulla(u, v); if (vp > .3 && Math.random() < .5) fums.push({ x: p.x1, y: p.y1, vx: (Math.random() - .5) * .8, vy: -1.2 - Math.random() * 1.2, l: 0, m: 50 + Math.random() * 30, r: 14 + Math.random() * 14, sp: spV }); }
+        if (Math.random() < .3) cendra.push({ x: p.x1, y: p.y1, vx: (Math.random() - .5) * 2.4, vy: -1.5 - Math.random() * 1.5, l: 0, m: 22, s: 2, w: true });
+        return false; } return true; });
+    for (const p of aigua) { const t = p.t, x = p.x0 + (p.x1 - p.x0) * t, y = p.y0 + (p.y1 - p.y0) * t - Math.sin(Math.PI * t) * 26;
+      ox.beginPath(); ox.ellipse(x, y, p.r * 1.5, p.r, Math.atan2(p.y1 - p.y0, p.x1 - p.x0), 0, 7); ox.fillStyle = "#dff1ff"; ox.fill(); ox.stroke(); }
+    // cendra i gotetes
+    if (estat !== "res" && vis && Math.random() < (estat === "foc" ? .9 : .25)) { const [X, Y] = aPant(Math.random() * W, H * (.2 + Math.random() * .75));
+      cendra.push({ x: X, y: Y, vx: (Math.random() - .5) * .6, vy: estat === "apagat" ? .2 + Math.random() * .4 : -.6 - Math.random() * 1.2, l: 0, m: 90 + Math.random() * 70, s: 1.4 + Math.random() * 2.2, f: estat === "foc" && Math.random() < .5 }); }
+    cendra = cendra.filter(c => ++c.l < c.m);
+    for (const c of cendra) { c.x += c.vx + (c.w ? 0 : Math.sin((c.l + c.y) * .06) * .4); c.y += c.vy; if (c.w) c.vy += .25; const a = 1 - c.l / c.m;
+      ox.fillStyle = c.w ? `rgba(223,241,255,${a})` : c.f ? `rgba(255,${150 + (a * 80) | 0},70,${a})` : `rgba(170,162,152,${a * .9})`; ox.fillRect(c.x, c.y, c.s, c.s * (c.f || c.w ? 1 : .6)); }
+    if (mostra) manega(ox, Math.max(.8, Math.min(1.3, geo.fw / 300)));
+    document.documentElement.classList.toggle("bombers", mostra && ptr.tipus === "mouse");
+    if (vis && (estat === "foc" || flames.length || fums.length || cendra.length || aigua.length || estat === "apagat")) raf = requestAnimationFrame(tick);
+    else { ox.clearRect(0, 0, ov.width, ov.height); document.documentElement.classList.remove("bombers"); }
+  }
+  // el punter: tota la secció és l'abast de la mànega
+  const pos = e => { const r = sec.getBoundingClientRect(); ptr.x = e.clientX - r.left; ptr.y = e.clientY - r.top; ptr.tipus = e.pointerType || "mouse"; };
+  sec.addEventListener("pointermove", e => { pos(e); ptr.dins = true; }, { passive: true });
+  sec.addEventListener("pointerleave", () => { ptr.dins = false; ptr.prem = false; });
+  sec.addEventListener("pointerdown", e => { if (estat !== "foc") return; if (e.target.closest("button:not(.burn),a,input,.taco-zona,.calendari")) return;
+    if (e.pointerType !== "mouse" && !e.target.closest("#burn")) return;
+    pos(e); ptr.dins = true; ptr.prem = true; if (e.pointerType !== "mouse") e.preventDefault(); });
+  addEventListener("pointerup", e => { ptr.prem = false; if (e.pointerType !== "mouse") ptr.dins = false; });
+  addEventListener("pointercancel", () => { ptr.prem = false; ptr.dins = false; });
+  fig.addEventListener("click", () => { if (estat === "apagat" || estat === "cremat" || estat === "res") { if (!carrega()) return; vis = true; encen(); } });
+  new IntersectionObserver(([e]) => { vis = e.isIntersecting; if (vis && estat === "res") setTimeout(() => { if (estat === "res" && carrega()) encen(); }, 700); else if (vis) arrenca(); }, { threshold: .35 }).observe(fig);
   if (img.complete) carrega(); else img.addEventListener("load", carrega, { once: true });
 })();
 
@@ -2736,6 +2917,9 @@ import { revista } from "./assets/js/revista.js";
 import { castell } from "./assets/js/castell.js";
 import { maquetes } from "./assets/js/maquetes.js";
 import { llibre } from "./assets/js/llibre.js";
+import { capella } from "./assets/js/capella.js";
+try { const alt = document.querySelector(".altar"); if (alt) { const h = document.createElement("div"); h.className = "capella3d"; alt.prepend(h);
+  window.__cap3d = capella(h, { onNiche: () => window.__capSeg && window.__capSeg() }); alt.classList.add("amb-3d"); window.__capMunta && window.__capMunta(); } } catch (e) { console.error(e); document.querySelector(".capella3d")?.remove(); }
 window.__llibre = llibre; try { window.__muntaVisca && window.__muntaVisca(); } catch (e) { console.error(e); }
 try {
   const d = window.__maqDades(), mh = document.getElementById("maq3d");
