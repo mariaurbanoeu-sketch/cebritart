@@ -607,9 +607,13 @@ section{padding:clamp(5rem,11vw,9rem) 0;position:relative}
 .cinta.dalt{left:calc(50% + var(--tx,0%));top:-14px;transform:translateX(-50%) rotate(var(--tr,-3deg));width:clamp(74px,40%,128px)}
 /* ---------- disseny: cas d'estudi ---------- */
 .cas-galeria{display:grid;gap:clamp(.8rem,1.6vw,1.4rem)}
-.cas-galeria .gran img{width:100%;height:auto;display:block}
-.cas-galeria .resta{columns:2 260px;column-gap:clamp(.8rem,1.6vw,1.4rem)}
-.cas-galeria .resta button{display:block;width:100%;margin-bottom:clamp(.8rem,1.6vw,1.4rem);break-inside:avoid}
+.cas-galeria .gran{display:grid;place-items:center;width:100%;height:clamp(300px,58vh,600px);padding:clamp(.6rem,1.4vw,1.2rem)}
+.cas-galeria .gran img{width:auto;max-width:100%;height:auto;max-height:100%;object-fit:contain;display:block;box-shadow:0 14px 30px -18px rgba(40,50,90,.45)}
+.cas-galeria .resta{display:flex;gap:.6rem;overflow-x:auto;padding:.2rem .1rem .5rem;scrollbar-width:thin;scroll-snap-type:x proximity}
+.cas-galeria .resta .mini{flex:0 0 auto;height:clamp(64px,9vh,92px);aspect-ratio:1;padding:3px;background:var(--paper,#fdfdfb);border-radius:4px;box-shadow:0 0 0 1px rgba(127,156,196,.35);opacity:.6;cursor:pointer;scroll-snap-align:start;transition:opacity .2s,transform .2s,box-shadow .2s}
+.cas-galeria .resta .mini img{width:100%;height:100%;object-fit:cover;border-radius:2px}
+.cas-galeria .resta .mini:hover,.cas-galeria .resta .mini[aria-pressed="true"]{opacity:1;transform:translateY(-2px);box-shadow:0 0 0 2px var(--ink,#2f4b7c)}
+@media (max-width:860px){.cas-galeria .gran{height:auto}.cas-galeria .gran img{max-height:min(56vh,440px)}}
 .cas-galeria button{cursor:zoom-in;background:var(--beix-paper);overflow:hidden}
 .cas-galeria img{width:100%;height:auto;display:block;transition:transform .6s ease}
 .cas-galeria button:hover img{transform:scale(1.02)}
@@ -1118,6 +1122,7 @@ html.bombers #nib,html.bombers #ink{opacity:0!important;visibility:hidden}
 html.bombers .crema,html.bombers .crema *{cursor:none!important}
 .crema .burn{margin-bottom:3.6rem}
 
+@media (max-width:860px){.panel,.panel:has(.proto){grid-template-columns:minmax(0,1fr)}.panel .meta{position:static}}
 /* capella 3D */
 .altar.amb-3d{display:block;position:relative}
 .capella3d{width:min(980px,100%);aspect-ratio:1.15;margin:0 auto;position:relative}
@@ -2005,7 +2010,7 @@ function renderProjects(){
       ${p.id === "visca" ? `<div class="visca-llibre" id="viscaLlibre"></div>` : ""}
       <div class="cas-galeria"><button class="gran" data-lb="p-${p.id}" data-i="0" aria-label="${L(p.name)} 1"><img src="${p.imgs[0]}" alt="${L(p.name)}" loading="lazy"></button>
         ${p.taulells ? `<div class="taulells-reals" aria-label="${lang === "val" ? "Els taulells" : "Los azulejos"}">${p.taulells.map((t, k) => `<img src="${t}" alt="" loading="lazy" style="--k:${k}">`).join("")}</div>` : ""}
-        <div class="resta">${p.imgs.slice(1).map((s, i) => `<button data-lb="p-${p.id}" data-i="${i + 1}" aria-label="${L(p.name)} ${i + 2}"><img src="${s}" alt="${L(p.name)}, ${i + 2}" loading="lazy"></button>`).join("")}</div></div>
+        ${p.imgs.length > 1 ? `<div class="resta" role="group" aria-label="${lang === "val" ? "Imatges del projecte" : "Imágenes del proyecto"}">${p.imgs.map((s, i) => `<button type="button" class="mini" data-mini="${i}" aria-pressed="${i === 0}" aria-label="${L(p.name)} ${i + 1}"><img src="${s}" alt="" loading="lazy"></button>`).join("")}</div>` : ""}</div>
     </div>`).join("");
   muntaVisca(); muntaProto();
 }
@@ -2036,6 +2041,8 @@ function passa(el, dir){
   full.addEventListener("transitionend", () => llibre(el, i + dir * 2), { once: true });
 }
 $("#panels").addEventListener("click", e => {
+  const mi = e.target.closest(".mini"); if (mi) { const gal = mi.closest(".cas-galeria"), gr = gal.querySelector(".gran"), im = gr.querySelector("img"), k = +mi.dataset.mini;
+    gr.dataset.i = k; im.src = mi.querySelector("img").src; gal.querySelectorAll(".mini").forEach(b => b.setAttribute("aria-pressed", b === mi)); return; }
   if (e.target.closest("#protoObri")) { const pan = $("#protoPantalla"), src = figmaEmbed(FIGMA_PROTO); if (src) pan.innerHTML = `<iframe src="${src}" title="Passaport Faller, prototip" allow="fullscreen; clipboard-write" allowfullscreen></iframe>`; return; }
   const b = e.target.closest("[data-ll]"); const pg = e.target.closest(".llibre-obert .pag.click");
   const el = e.target.closest(".llibret"); if (!el) return;
