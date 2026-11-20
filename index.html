@@ -1086,6 +1086,25 @@ html.sacseja-fort .nav{animation:sacseja .4s linear}
 .burn.cv #burnCv{opacity:1}
 .burn.cv img{visibility:hidden}
 
+
+/* la textura de Miguel també de nit: a tot el que és fons, damunt de llums i focs */
+:is(.zona-nit,.capvespre,.capvespre-peu,.crema){position:relative;isolation:isolate}
+:is(.zona-nit,.capvespre,.capvespre-peu,.crema)::after{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:url("assets/brand/textura-tile.jpg") 0 0/900px;mix-blend-mode:overlay;opacity:.8}
+.capvespre::after{opacity:.6}
+
+
+/* fotos soltes al suro */
+.suro-fotos{grid-column:1/-1;list-style:none;margin:.6rem 0 0;padding:0;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:clamp(1.2rem,2.4vw,2rem) clamp(.8rem,1.6vw,1.4rem);grid-auto-flow:dense;align-items:start}
+@media (max-width:860px){.suro-fotos{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media (max-width:520px){.suro-fotos{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.retall.solta{padding:.45rem .45rem .9rem}
+.retall.solta .foto{aspect-ratio:3/4}
+.retall.solta.ampla{grid-column:span 2}
+.retall.solta.ampla .foto{aspect-ratio:3/2}
+.retall.solta .peu-solt{display:block;margin-top:.45rem;font-family:var(--serif);font-style:italic;font-size:.92rem;color:var(--ink-soft);text-align:center}
+.retall.solta:nth-child(even){margin-top:0}
+@media (max-width:420px){.retall.solta.ampla{grid-column:span 2}}
+
 /* ===== GRÚA 3D ===== */
 .hero{position:relative;isolation:isolate}
 .hero>.wrap{position:relative;z-index:2;width:100%}
@@ -1230,6 +1249,7 @@ html.sacseja-fort .nav{animation:sacseja .4s linear}
         <a class="diari" href="https://8tv-videos.b-cdn.net/25112024186_22112024-lmc-ok.mp4#t=1600" style="--r:-1deg"><i class="xinxeta c3"></i><small data-i18n="pr.tv">Televisió</small><strong data-i18n="pr.3">Miguel, en directe a la televisió</strong><span data-i18n="pr.from2">Des del minut 26:40</span></a>
         <p class="suro-total"><b>+1,5 M</b> <span data-i18n="ct.rep">reproduccions</span><br><b>8.134</b> <span data-i18n="ct.seg">seguidors</span></p>
       </div>
+      <ul class="suro-fotos" id="suroFotos"></ul>
     </div>
   </div>
 </section>
@@ -1857,6 +1877,16 @@ const star = `<svg class="dot"><use href="#d16" fill="currentColor"/></svg>`;
 const PLAY = `<svg viewBox="0 0 24 24"><path d="M7 4l13 8-13 8z"/></svg>`;
 const viewsNum = v => { const n = parseFloat(String(v).replace(",", ".")); return /M/i.test(v) ? n * 1e6 : /k/i.test(v) ? n * 1e3 : n; };
 const reelImg = { "DHGORj4tfu_": "assets/hitos/mocador-solidari.webp" };
+const SURO_FOTOS = [
+  { src: "proces-jota", t: { val: "En procés: la Jota", cas: "En proceso: la Jota" } },
+  { src: "parada-mocadors", w: 1, t: { val: "La parada dels mocadors solidaris", cas: "El puesto de los pañuelos solidarios" } },
+  { src: "proces-estoreta", t: { val: "En procés: l'Estoreta", cas: "En proceso: l'Estoreta" } },
+  { src: "lamines-dana", t: { val: "Les làmines de la DANA", cas: "Las láminas de la DANA" } },
+  { src: "corts-ajuntament", w: 1, t: { val: "L'entrega a l'Ajuntament", cas: "La entrega en el Ayuntamiento" } },
+  { src: "proces-adriluc", t: { val: "En procés: Adriluc", cas: "En proceso: Adriluc" } },
+  { src: "proces-pirotecnic", t: { val: "En procés: el senyor pirotècnic", cas: "En proceso: el señor pirotécnico" } },
+  { src: "proces-maredeueta", t: { val: "En procés: la Mare de Déu", cas: "En proceso: la Mare de Déu" } }
+];
 function renderFites(){
   const rots = [-2.5, 1.8, -1, 2.6, -1.8, 1.2, -2.2, 2];
   $("#timeline").innerHTML = fites.map((f, i) => {
@@ -1871,8 +1901,9 @@ function renderFites(){
       ${f.v ? `<p class="apunt"><b>${f.v}</b><span>${lbl}</span></p>` : ""}
     </li>`;
   }).join("");
-  const io = new IntersectionObserver(es => es.forEach(en => { if (en.isIntersecting) { en.target.classList.add("in"); io.unobserve(en.target); } }), { threshold: .2 });
-  $$("#timeline .retall, .suro .diari").forEach(li => reduce ? li.classList.add("in") : io.observe(li));
+  $("#suroFotos").innerHTML = SURO_FOTOS.map((f, i) => `<li class="retall solta${f.w ? " ampla" : ""}" style="--r:${[3, -4, 2.5, -2, 4, -3, 2, -2.5][i % 8]}deg"><i class="xinxeta c${((i + 1) % 3) + 1}"></i><span class="foto"><img src="assets/suro/${f.src}.webp" alt="${L(f.t)}" loading="lazy"></span><small class="peu-solt">${L(f.t)}</small></li>`).join("");
+  const io = new IntersectionObserver(es => es.forEach(en => { if (en.isIntersecting) { en.target.classList.add("in"); io.unobserve(en.target); } }), { threshold: .05 });
+  $$("#timeline .retall, #suroFotos .retall, .suro .diari").forEach(li => reduce ? li.classList.add("in") : io.observe(li));
 }
 
 /* ================= FALLES 26 ================= */
