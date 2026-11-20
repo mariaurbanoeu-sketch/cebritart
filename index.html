@@ -2095,7 +2095,7 @@ addEventListener("keydown", e => {
 /* ================= FORMULARI ================= */
 /* Per a que l'encàrrec arribe directament al correu de Miguel cal un servei de formularis
    (Formspree, Web3Forms…). Posa ací l'URL de l'endpoint; si està buit, s'obri el correu. */
-const FORM_ENDPOINT = "";
+const FORM_ENDPOINT = "https://formsubmit.co/ajax/migueelruizzn@gmail.com";
 function renderKinds(){
   const KIMG = ["ilustra/serie-5-adriluc", "ilustra/serie-6-crida", "ilustra/alcaldesa-fmiv", "grafic/falles-2026/cartells/principal", "ilustra/serie-11-maredeueta", "brand/logo-cebritart"];
   $("#kinds").innerHTML = T[lang].kinds.map((k, i) => `<label style="--r:${[-2, 1.5, -1, 2, -1.5, 1][i]}deg"><input type="radio" name="kind" value="${k}" ${i === 0 ? "checked" : ""}><span><img src="assets/${KIMG[i]}.webp" alt="" loading="lazy"><b>${k}</b></span></label>`).join("");
@@ -2175,10 +2175,10 @@ $("#fitxa").addEventListener("submit", async e => {
   const mailBlock = (lead) => `<p>${lead}</p><div class="btns"><a class="btn" href="${ml}">${T[lang].mailBtn}</a></div><p style="margin-top:.8rem;font-size:.85rem;color:var(--ink-soft)">${T[lang].mailNote}</p>`;
   if (FORM_ENDPOINT) {
     out.innerHTML = `<p>${T[lang].sending}</p>`;
-    fd.append("_subject", T[lang].subj + " · " + d.nom); fd.append("_replyto", d.email);
+    fd.append("_subject", T[lang].subj + " · " + d.nom); fd.append("_replyto", d.email); fd.append("_template", "table"); fd.append("_captcha", "false"); fd.append("Encàrrec", txt);
     try {
       const r = await fetch(FORM_ENDPOINT, { method: "POST", body: fd, headers: { Accept: "application/json" } });
-      if (!r.ok) throw 0;
+      if (!r.ok) throw 0; const j = await r.json().catch(() => ({})); if (String(j.success) === "false" && !/activ/i.test(j.message || "")) throw 0;
       grua_emporta(() => { out.hidden = false; out.innerHTML = `<p class="rebut-t">${T[lang].sent(esc(d.nom))}</p>` + copia(); const b = out.getBoundingClientRect(); mascleta(b.left + b.width / 2, b.top, 28); });
     } catch (_) { out.hidden = false; out.innerHTML = mailBlock(T[lang].sendFail); }
   } else {
