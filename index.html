@@ -1094,9 +1094,9 @@ html.sacseja-fort .nav{animation:sacseja .4s linear}
 
 
 /* fotos soltes al suro */
-.suro-fotos{grid-column:1/-1;list-style:none;margin:.6rem 0 0;padding:0;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:clamp(1.2rem,2.4vw,2rem) clamp(.8rem,1.6vw,1.4rem);grid-auto-flow:dense;align-items:start}
-@media (max-width:860px){.suro-fotos{grid-template-columns:repeat(3,minmax(0,1fr))}}
-@media (max-width:520px){.suro-fotos{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.suro-fotos{grid-column:1/-1;list-style:none;margin:.6rem 0 0;padding:0;display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:1rem clamp(.8rem,1.6vw,1.4rem);grid-auto-flow:dense;align-items:center}
+@media (max-width:860px){.suro-fotos{grid-template-columns:repeat(3,minmax(0,1fr))}.suro-fotos li:nth-child(n+4){display:none}}
+@media (max-width:520px){.suro-fotos{grid-template-columns:repeat(2,minmax(0,1fr))}.suro-fotos li:nth-child(n+3){display:none}}
 .retall.solta{padding:.45rem .45rem .9rem}
 .retall.solta .foto{aspect-ratio:3/4}
 .retall.solta.ampla{grid-column:span 2}
@@ -1882,9 +1882,6 @@ const SURO_FOTOS = [
   { src: "parada-mocadors", w: 1, t: { val: "La parada dels mocadors solidaris", cas: "El puesto de los pañuelos solidarios" } },
   { src: "proces-estoreta", t: { val: "En procés: l'Estoreta", cas: "En proceso: l'Estoreta" } },
   { src: "lamines-dana", t: { val: "Les làmines de la DANA", cas: "Las láminas de la DANA" } },
-  { src: "corts-ajuntament", w: 1, t: { val: "L'entrega a l'Ajuntament", cas: "La entrega en el Ayuntamiento" } },
-  { src: "proces-adriluc", t: { val: "En procés: Adriluc", cas: "En proceso: Adriluc" } },
-  { src: "proces-pirotecnic", t: { val: "En procés: el senyor pirotècnic", cas: "En proceso: el señor pirotécnico" } },
   { src: "proces-maredeueta", t: { val: "En procés: la Mare de Déu", cas: "En proceso: la Mare de Déu" } }
 ];
 function renderFites(){
