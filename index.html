@@ -1033,7 +1033,7 @@ html.sacseja-fort .nav{animation:sacseja .4s linear}
 .proto{display:flex;flex-direction:column;align-items:center;gap:.9rem}
 .proto-obri{font-size:.9rem;font-weight:600;text-decoration:underline;text-underline-offset:4px}
 .proto-mobil{width:300px;aspect-ratio:9/19.5;padding:12px;border-radius:44px;background:#1f2a44;box-shadow:0 0 0 2px #3b4b70 inset,0 30px 60px -30px rgba(0,0,0,.6)}
-.proto-pantalla{position:relative;width:100%;height:100%;border-radius:32px;overflow:hidden;background:#f4efe4;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.8rem;padding:1.4rem;text-align:center}
+.proto-pantalla{position:relative;width:100%;height:100%;border-radius:32px;overflow:hidden;background:#fdfdfb;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.8rem;padding:1.4rem;text-align:center}
 .proto-pantalla small{font-size:.8rem;color:var(--ink-soft);line-height:1.4}
 .proto-pantalla iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
 @media (max-width:1060px){.panel:has(.proto){grid-template-columns:minmax(0,1fr)}.proto{order:-1}}
@@ -1984,7 +1984,7 @@ function renderF26(){
 /* ================= PROTOTIP DEL PASSAPORT FALLER =================
    Enganxa ací l'enllaç del prototip de Figma (Compartir → Copiar enllaç del prototip). */
 const FIGMA_PROTO = "https://www.figma.com/proto/Yh9blbKlV69pG2wbfwMILr/VariablesFallas-para-portfolio?node-id=1-308&p=f&t=b3HVdXlkGndtXTm8-1&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=1%3A308&show-proto-sidebar=1";
-const figmaEmbed = u => { try { const x = new URL(u); if (!/figma\.com$/.test(x.hostname)) return ""; x.hostname = "embed.figma.com"; x.pathname = x.pathname.replace(/^\/(design|file)\//, "/proto/"); ["m", "t", "p", "show-proto-sidebar"].forEach(k => x.searchParams.delete(k)); x.searchParams.set("embed-host", "cebritart"); x.searchParams.set("hide-ui", "1"); x.searchParams.set("scaling", "scale-down"); return x.toString(); } catch (_) { return ""; } };
+const figmaEmbed = u => { try { const x = new URL(u); if (!/figma\.com$/.test(x.hostname)) return ""; x.hostname = "embed.figma.com"; x.pathname = x.pathname.replace(/^\/(design|file)\//, "/proto/"); ["m", "t", "p", "show-proto-sidebar"].forEach(k => x.searchParams.delete(k)); x.searchParams.set("embed-host", "cebritart"); x.searchParams.set("hide-ui", "1"); x.searchParams.set("scaling", "contain"); x.searchParams.set("content-scaling", "fixed"); x.searchParams.set("bg-color", "fdfdfb"); return x.toString(); } catch (_) { return ""; } };
 
 /* ================= PROJECTES ================= */
 let current = "f26";
@@ -2007,8 +2007,13 @@ function renderProjects(){
         ${p.taulells ? `<div class="taulells-reals" aria-label="${lang === "val" ? "Els taulells" : "Los azulejos"}">${p.taulells.map((t, k) => `<img src="${t}" alt="" loading="lazy" style="--k:${k}">`).join("")}</div>` : ""}
         <div class="resta">${p.imgs.slice(1).map((s, i) => `<button data-lb="p-${p.id}" data-i="${i + 1}" aria-label="${L(p.name)} ${i + 2}"><img src="${s}" alt="${L(p.name)}, ${i + 2}" loading="lazy"></button>`).join("")}</div></div>
     </div>`).join("");
-  muntaVisca();
+  muntaVisca(); muntaProto();
 }
+let protoObs = null;
+function muntaProto(){ const pan = $("#protoPantalla"); if (!pan) return; protoObs && protoObs.disconnect();
+  protoObs = new IntersectionObserver(([e]) => { if (!e.isIntersecting || pan.querySelector("iframe")) return; const src = figmaEmbed(FIGMA_PROTO); if (!src) return;
+    pan.innerHTML = `<iframe src="${src}" title="Passaport Faller, prototip" allow="fullscreen; clipboard-write" allowfullscreen></iframe>`; protoObs.disconnect(); }, { rootMargin: "200px" });
+  protoObs.observe(pan); }
 const fullaOf = {};
 function pagHTML(src, cls){ return `<div class="pag ${cls}">${src ? `<img src="${src}" alt="" loading="lazy">` : ""}</div>`; }
 function llibre(el, i){
@@ -2031,7 +2036,7 @@ function passa(el, dir){
   full.addEventListener("transitionend", () => llibre(el, i + dir * 2), { once: true });
 }
 $("#panels").addEventListener("click", e => {
-  if (e.target.closest("#protoObri")) { const pan = $("#protoPantalla"), src = figmaEmbed(FIGMA_PROTO); if (src) pan.innerHTML = `<iframe src="${src}" title="Passaport Faller, prototip" allowfullscreen loading="lazy"></iframe>`; return; }
+  if (e.target.closest("#protoObri")) { const pan = $("#protoPantalla"), src = figmaEmbed(FIGMA_PROTO); if (src) pan.innerHTML = `<iframe src="${src}" title="Passaport Faller, prototip" allow="fullscreen; clipboard-write" allowfullscreen></iframe>`; return; }
   const b = e.target.closest("[data-ll]"); const pg = e.target.closest(".llibre-obert .pag.click");
   const el = e.target.closest(".llibret"); if (!el) return;
   if (b) passa(el, +b.dataset.ll);
