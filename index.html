@@ -844,6 +844,7 @@ html.canviant body *{transition-duration:0s!important}
 
 
 /* prestatgeria 3D */
+.maq-3d:not(.viu){display:none}
 .maq-3d{aspect-ratio:1.85;margin:0 auto 1.4rem;max-width:1100px}
 @media (max-width:900px){.maq-3d{aspect-ratio:1.3}}
 .maq-canvas{display:block}
@@ -2931,14 +2932,23 @@ import { castell } from "./assets/js/castell.js";
 import { maquetes } from "./assets/js/maquetes.js";
 import { llibre } from "./assets/js/llibre.js";
 import { capella } from "./assets/js/capella.js";
-try { const alt = document.querySelector(".altar"); if (alt) { const h = document.createElement("div"); h.className = "capella3d"; alt.prepend(h);
-  window.__cap3d = capella(h, { onNiche: () => window.__capSeg && window.__capSeg() }); alt.classList.add("amb-3d"); window.__capMunta && window.__capMunta(); } } catch (e) { console.error(e); document.querySelector(".capella3d")?.remove(); }
+
 window.__llibre = llibre; try { window.__muntaVisca && window.__muntaVisca(); } catch (e) { console.error(e); }
-try {
-  const d = window.__maqDades(), mh = document.getElementById("maq3d");
-  window.__maq = maquetes(mh, d.items, { current: d.current, onPick: id => window.__maqDades().select(id) });
-  document.getElementById("tabs").classList.add("amb-3d");
-} catch (e) { console.error(e); }
+// les peces 3D es creen quan s'hi acosta l'usuari (Safari del mòbil no aguanta moltes alhora)
+const quanArribe = (el, fn) => { if (!el) return; const io = new IntersectionObserver(([e]) => { if (e.isIntersecting) { io.disconnect(); fn(); } }, { rootMargin: "700px 0px" }); io.observe(el); };
+const perdut = (cv, fn) => cv && cv.addEventListener("webglcontextlost", e => { e.preventDefault(); fn(); });
+{ const mh = document.getElementById("maq3d"), tabs = document.getElementById("tabs");
+  quanArribe(mh.parentElement, () => { try {
+    const d = window.__maqDades(); mh.classList.add("viu");
+    window.__maq = maquetes(mh, d.items, { current: d.current, onPick: id => window.__maqDades().select(id) });
+    mh.classList.add("viu"); tabs.classList.add("amb-3d");
+    perdut(mh.querySelector("canvas"), () => { mh.classList.remove("viu"); tabs.classList.remove("amb-3d"); window.__maq = null; });
+  } catch (e) { console.error(e); mh.classList.remove("viu"); tabs.classList.remove("amb-3d"); } }); }
+{ const alt = document.querySelector(".altar");
+  quanArribe(alt, () => { const h = document.createElement("div"); h.className = "capella3d"; try { alt.prepend(h);
+    window.__cap3d = capella(h, { onNiche: () => window.__capSeg && window.__capSeg() }); alt.classList.add("amb-3d"); window.__capMunta && window.__capMunta();
+    perdut(h.querySelector("canvas"), () => { h.remove(); alt.classList.remove("amb-3d"); window.__cap3d = null; });
+  } catch (e) { console.error(e); h.remove(); alt.classList.remove("amb-3d"); window.__cap3d = null; } }); }
 try { castell(document.getElementById("castell")); castell(document.getElementById("cel"), { capvespre: true }); } catch (e) { console.error(e); }
 const host = document.getElementById("grua");
 try { window.__grua = grua(host, { zone: document.querySelector(".hero"), onLift: () => window.__so && window.__so.vibra("gran") }); } catch (e) { host.remove(); }

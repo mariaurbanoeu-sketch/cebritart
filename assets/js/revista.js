@@ -8,7 +8,7 @@ export function revista(host, opts = {}) {
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const INK = '#2f4b7c', SOFT = '#7f9cc4', PAPER = '#fbf8f1';
   const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-  renderer.setPixelRatio(Math.min(devicePixelRatio || 1, 2));
+  renderer.setPixelRatio(Math.min(devicePixelRatio || 1, matchMedia('(pointer: coarse)').matches ? 1.5 : 2));
   renderer.setClearColor(0, 0);
   renderer.domElement.className = 'rv-canvas';
   host.appendChild(renderer.domElement);

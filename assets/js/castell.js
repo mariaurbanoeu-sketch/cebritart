@@ -9,7 +9,7 @@ export function castell(host, opts = {}) {
   const cap = !!opts.capvespre;
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-  renderer.setPixelRatio(Math.min(devicePixelRatio || 1, 2)); renderer.setClearColor(0, 0);
+  renderer.setPixelRatio(Math.min(devicePixelRatio || 1, matchMedia('(pointer: coarse)').matches ? 1.5 : 2)); renderer.setClearColor(0, 0);
   host.appendChild(renderer.domElement);
   const scene = new THREE.Scene(), camera = new THREE.PerspectiveCamera(30, 2, .1, 400);
   const mats = [];
@@ -27,7 +27,7 @@ export function castell(host, opts = {}) {
     camera.updateProjectionMatrix();
     city.position.set(0, -.5, 0); city.scale.setScalar(mob ? .62 : 1);
     for (const m of mats) m.resolution.set(w, h);
-    F.material.uniforms.uScale.value = h * 3 * Math.min(devicePixelRatio || 1, 2);
+    F.material.uniforms.uScale.value = h * 3 * Math.min(devicePixelRatio || 1, matchMedia('(pointer: coarse)').matches ? 1.5 : 2);
     renderer.render(scene, camera);
   }
   function tick(now) {

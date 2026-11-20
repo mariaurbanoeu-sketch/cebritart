@@ -7,7 +7,7 @@ import { LineMaterial } from './lines/LineMaterial.js';
 export function capella(host, opts = {}) {
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-  renderer.setPixelRatio(Math.min(devicePixelRatio || 1, 2));
+  renderer.setPixelRatio(Math.min(devicePixelRatio || 1, matchMedia('(pointer: coarse)').matches ? 1.5 : 2));
   renderer.setClearColor(0x000000, 0);
   renderer.domElement.className = 'capella-canvas';
   host.appendChild(renderer.domElement);

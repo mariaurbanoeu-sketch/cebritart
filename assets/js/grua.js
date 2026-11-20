@@ -15,7 +15,7 @@ export function grua(host, opts = {}) {
   };
 
   const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-  renderer.setPixelRatio(Math.min(devicePixelRatio || 1, 2));
+  renderer.setPixelRatio(Math.min(devicePixelRatio || 1, matchMedia('(pointer: coarse)').matches ? 1.5 : 2));
   renderer.setClearColor(0x000000, 0);
   renderer.domElement.className = 'grua-canvas';
   host.appendChild(renderer.domElement);
@@ -298,7 +298,7 @@ export function grua(host, opts = {}) {
     if (mob) { goal.drop = 4.2; camera.fov = 34; camera.position.set(3, 9.5, 38); camera.lookAt(-4.8, 10.6, 0); crane.position.set(2.2, 0, 0); }
     else if (apilat) { goal.drop = 5.2; camera.fov = 30; camera.position.set(2, 8, 40); camera.lookAt(-3, 9.6, 0); crane.position.set(5.5, 0, -2); }
     else { const d = 50 * Math.max(1, 1.62 / camera.aspect); goal.drop = 6.6; camera.fov = 27; camera.position.set(1, 6.8, d); camera.lookAt(-6.4, 8.8, 0); crane.position.set(6.6, .2, -2); }
-    pMat.uniforms.uScale.value = Hh * 3 * Math.min(devicePixelRatio || 1, 2); fMat.uniforms.uScale.value = Hh * 1.6 * Math.min(devicePixelRatio || 1, 2);
+    pMat.uniforms.uScale.value = Hh * 3 * Math.min(devicePixelRatio || 1, matchMedia('(pointer: coarse)').matches ? 1.5 : 2); fMat.uniforms.uScale.value = Hh * 1.6 * Math.min(devicePixelRatio || 1, 2);
     if (mob) { cart.position.set(-12.5, 0, 3); cart.rotation.y = .6; cart.scale.setScalar(.75); city.position.set(6, -.3, -30); } else if (apilat) { cart.position.set(-9.5, 0, 6); cart.rotation.y = .5; cart.scale.setScalar(.9); } else { cart.position.set(-7.2, 0, 9); cart.rotation.y = .5; cart.scale.setScalar(1); city.position.set(9, -.3, -34); }
     camera.updateProjectionMatrix(); draw();
   }

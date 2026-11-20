@@ -7,7 +7,7 @@ import { LineMaterial } from './lines/LineMaterial.js';
 export function maquetes(host, items, opts = {}) {
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-  renderer.setPixelRatio(Math.min(devicePixelRatio || 1, 2)); renderer.setClearColor(0, 0);
+  renderer.setPixelRatio(Math.min(devicePixelRatio || 1, matchMedia('(pointer: coarse)').matches ? 1.5 : 2)); renderer.setClearColor(0, 0);
   renderer.domElement.className = 'maq-canvas'; host.appendChild(renderer.domElement);
   const scene = new THREE.Scene(), camera = new THREE.PerspectiveCamera(26, 2, .1, 200);
   const mats = [];
